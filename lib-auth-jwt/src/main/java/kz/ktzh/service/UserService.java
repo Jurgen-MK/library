@@ -56,12 +56,12 @@ public class UserService {
 				userInfoRepo.save(userInfo);
 			} catch (Exception e) {
 				e.printStackTrace();
-				return "Ошибка регистрации";
+				return "3";
 			}
 		} else {
-			return "1";
+			return "0";
 		}
-		return "0";
+		return "1";
 	}
 	
 	public String md5String(String pass) throws NoSuchAlgorithmException {

@@ -1,29 +1,60 @@
 package kz.ktzh.models;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
+@Table(name = "user_info")
 public class UserInfo {
 
 	@Id
 	private int id;
 	private String username;
-	private String fullname;
+	private String name;
+	private String surname;
+	private String patronymic;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date birthday;
+	private String address;
+	private int branch;
+	private int department;
+	private int nti;
+	private int line;
+	private int region;
+	private int danger;
 	private String phone;
 	private String email;
-	private String position;
+	private String education;
 
 	protected UserInfo() {
 	}
+	
+	
 
-	public UserInfo(int id, String username, String fullname, String phone, String email, String position) {
+	public UserInfo(int id, String username, String name, String surname, String patronymic, Date birthday,
+			String address, int branch, int department, int nti, int line, int region, int danger, String phone,
+			String email, String education) {		
 		this.id = id;
 		this.username = username;
-		this.fullname = fullname;
+		this.name = name;
+		this.surname = surname;
+		this.patronymic = patronymic;
+		this.birthday = birthday;
+		this.address = address;
+		this.branch = branch;
+		this.department = department;
+		this.nti = nti;
+		this.line = line;
+		this.region = region;
+		this.danger = danger;
 		this.phone = phone;
 		this.email = email;
-		this.position = position;
+		this.education = education;
 	}
 
 	public int getId() {
@@ -42,12 +73,92 @@ public class UserInfo {
 		this.username = username;
 	}
 
-	public String getFullname() {
-		return fullname;
+	public String getName() {
+		return name;
 	}
 
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getPatronymic() {
+		return patronymic;
+	}
+
+	public void setPatronymic(String patronymic) {
+		this.patronymic = patronymic;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public int getBranch() {
+		return branch;
+	}
+
+	public void setBranch(int branch) {
+		this.branch = branch;
+	}
+
+	public int getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(int department) {
+		this.department = department;
+	}
+
+	public int getNti() {
+		return nti;
+	}
+
+	public void setNti(int nti) {
+		this.nti = nti;
+	}
+
+	public int getLine() {
+		return line;
+	}
+
+	public void setLine(int line) {
+		this.line = line;
+	}
+
+	public int getRegion() {
+		return region;
+	}
+
+	public void setRegion(int region) {
+		this.region = region;
+	}
+
+	public int getDanger() {
+		return danger;
+	}
+
+	public void setDanger(int danger) {
+		this.danger = danger;
 	}
 
 	public String getPhone() {
@@ -66,12 +177,16 @@ public class UserInfo {
 		this.email = email;
 	}
 
-	public String getPosition() {
-		return position;
+	public String getEducation() {
+		return education;
 	}
 
-	public void setPosition(String position) {
-		this.position = position;
+	public void setEducation(String education) {
+		this.education = education;
 	}
+
+
+
+	
 
 }
