@@ -2,7 +2,6 @@ package kz.ktzh.service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 
 import javax.xml.bind.DatatypeConverter;
 
@@ -32,28 +31,30 @@ public class UserService {
 
 	@Autowired
 	UserRoleRepository userRoleRepo;
-	
+
 	@Autowired
 	UserGroupsRepository userGroupsRepo;
 
 	@Autowired
+	UserDAO userDao;
+
+	@Autowired
 	PasswordEncoder passwordEnc;
-	
 
-
-	public String regUser(Users user, UserInfo userInfo) {		
+	public String regUser(Users user, UserInfo userInfo) {
 		if (userRepo.findByUsername(user.getUsername()).isEmpty()) {
 			try {
 				user.setPasswordmd5(md5String(user.getPassword()));
 				user.setPassword(passwordEnc.encode(user.getPassword()));
 				user.setAnswer(md5String(user.getAnswer()));
-				System.out.println("bcrypt - " + user.getPassword());				
+				System.out.println("bcrypt - " + user.getPassword());
 				userRepo.save(user);
 				userRoleRepo.save(new Authorities(user.getUsername(), ROLE));
 				userGroupsRepo.save(new UserGroups(user.getId(), 1));
-				//List<Users> tempuser = userRepo.findByUsername(user.getUsername());
+				// List<Users> tempuser = userRepo.findByUsername(user.getUsername());
 				userInfo.setId(user.getId());
 				userInfoRepo.save(userInfo);
+				return "1";
 			} catch (Exception e) {
 				e.printStackTrace();
 				return "3";
@@ -61,15 +62,47 @@ public class UserService {
 		} else {
 			return "0";
 		}
-		return "1";
 	}
-	
-	public String md5String(String pass) throws NoSuchAlgorithmException {
+
+	public String getSecretQuestion(String username) {
+		return userDao.getSecretQuestion(username);
+	}
+
+	public String changePassword(String username, String oldpass, String newpass) {
+		try {			
+			if (passwordEnc.matches(oldpass, userDao.getPassword(username))) {
+				userDao.resetPassword(username, passwordEnc.encode(newpass), md5String(newpass));
+				return "1";
+			} else {
+				return "0";
+			}
+		} catch (NoSuchAlgorithmException e) {			
+			e.printStackTrace();
+			return "3";
+		}
+	}
+
+	public String resetPassword(String username, String answer, String newpass) {
+		try {
+			if (md5String(answer).equals(userDao.getAnswer(username))) {
+				userDao.resetPassword(username, passwordEnc.encode(newpass), md5String(newpass));
+				return "1";
+			} else {
+				return "0";
+			}
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			return "3";
+		}
+
+	}
+
+	public String md5String(String nonhashedstring) throws NoSuchAlgorithmException {
 		MessageDigest md = MessageDigest.getInstance("MD5");
-	    md.update(pass.getBytes());
-	    byte[] digest = md.digest();
-	    String hashedPass = DatatypeConverter.printHexBinary(digest);
-	    return hashedPass;
+		md.update(nonhashedstring.getBytes());
+		byte[] digest = md.digest();
+		String hashedstring = DatatypeConverter.printHexBinary(digest).toLowerCase();
+		return hashedstring;
 	}
 
 }
