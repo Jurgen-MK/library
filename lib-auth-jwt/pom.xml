@@ -10,10 +10,10 @@
 		<relativePath />
 	</parent>
 	<groupId>kz.ktzh</groupId>
-	<artifactId>hse-railways-auth-jwt</artifactId>
+	<artifactId>lib-auth-jwt</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>hse-railways-auth-jwt</name>
-	<description>project for Spring Boot JWT</description>
+	<name>lib-auth-jwt</name>
+	<description>Authorisation/registration service for library app</description>
 
 	<properties>
 		<java.version>1.8</java.version>

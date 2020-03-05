@@ -47,7 +47,7 @@ public class UserService {
 				user.setPasswordmd5(md5String(user.getPassword()));
 				user.setPassword(passwordEnc.encode(user.getPassword()));
 				user.setAnswer(md5String(user.getAnswer()));
-				System.out.println("bcrypt - " + user.getPassword());
+				System.out.println("quest" + user.getSecretquestions());
 				userRepo.save(user);
 				userRoleRepo.save(new Authorities(user.getUsername(), ROLE));
 				userGroupsRepo.save(new UserGroups(user.getId(), 1));
