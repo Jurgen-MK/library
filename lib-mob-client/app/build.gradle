@@ -46,4 +46,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     implementation group: 'ru.tinkoff.decoro', name: 'decoro', version: '1.4.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+    implementation group: 'com.nightonke', name: 'boommenu', version: '2.1.1'
 }

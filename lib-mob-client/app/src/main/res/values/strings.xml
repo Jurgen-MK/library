@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">Library</string>
+    <string name="app_name">Библиотека</string>
+    <string name="Menu1">Библиотека</string>
+    <string name="Menu2">Библиотека</string>
+    <string name="Menu3">Библиотека</string>
+    <string name="Menu4">Библиотека</string>
     <string-array name="questions">
         <item>Какое прозвище было у вас в детстве?</item>
         <item>В каком городе вы познакомились со своей второй половиной?</item>
