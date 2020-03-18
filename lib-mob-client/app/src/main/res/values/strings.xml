@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Библиотека</string>
-    <string name="Menu1">Библиотека</string>
-    <string name="Menu2">Библиотека</string>
-    <string name="Menu3">Библиотека</string>
-    <string name="Menu4">Библиотека</string>
+    <string name="MenuItem1">Нормативно-техническая информация</string>
+    <string name="MenuItem2">Научно-техническая информация</string>
+    <string name="MenuItem3">Видеотека</string>
+    <string name="MenuItem4">Навигатор</string>
     <string-array name="questions">
         <item>Какое прозвище было у вас в детстве?</item>
         <item>В каком городе вы познакомились со своей второй половиной?</item>
@@ -22,4 +22,7 @@
         <item>В каком городе живет ваш ближайший родственник?</item>
         <item>Какая девичья фамилия вашей бабушки?</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
