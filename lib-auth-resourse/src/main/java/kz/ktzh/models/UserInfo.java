@@ -32,9 +32,7 @@ public class UserInfo {
 	private String education;
 
 	protected UserInfo() {
-	}
-	
-	
+	}	
 
 	public UserInfo(int id, String username, String name, String surname, String patronymic, Date birthday,
 			String address, int branch, int department, int nti, int line, int region, int danger, String phone,
