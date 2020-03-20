@@ -1,4 +1,4 @@
-package kz.lib_mob_client;
+package kz.lib_mob_client.fragments;
 
 import android.os.Bundle;
 
@@ -8,13 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import kz.lib_mob_client.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RegulatoryFragment#newInstance} factory method to
+ * Use the {@link RegulatoryMenuFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RegulatoryFragment extends Fragment {
+public class RegulatoryMenuFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -24,7 +26,9 @@ public class RegulatoryFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public RegulatoryFragment() {
+
+
+    public RegulatoryMenuFragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +41,8 @@ public class RegulatoryFragment extends Fragment {
      * @return A new instance of fragment RegulatoryFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RegulatoryFragment newInstance(String param1, String param2) {
-        RegulatoryFragment fragment = new RegulatoryFragment();
+    public static RegulatoryMenuFragment newInstance(String param1, String param2) {
+        RegulatoryMenuFragment fragment = new RegulatoryMenuFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,7 +62,8 @@ public class RegulatoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_regulatory, container, false);
+        return inflater.inflate(R.layout.fragment_regulatory_menu, container, false);
     }
+
+
 }

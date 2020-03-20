@@ -138,6 +138,7 @@
                 android:layout_width="258dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FF82B1FF"
+                android:onClick="onStudyGuidesClick"
                 android:text="Учебно-методически пособия" />
         </TableRow>
 

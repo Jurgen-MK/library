@@ -1,6 +1,5 @@
 package kz.ktzh.web;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -30,12 +29,12 @@ public class FileController {
 	private ServletContext servletContext;
 
 	@GetMapping("/getfile")
-	public ResponseEntity<ByteArrayResource> getFile(@RequestParam(defaultValue = DEFAULT_FILE_NAME) String filepath, @RequestParam String fileName)
+	public ResponseEntity<ByteArrayResource> getFile(@RequestParam String filepath, @RequestParam String fileName)
 			throws IOException {
 		MediaType mediaType = MediaTypeUtils.getMediaTypeForFileName(this.servletContext, fileName);
 		System.out.println("fileName: " + fileName);
 		System.out.println("mediaType: " + mediaType);
-		Path path = Paths.get(DIRECTORY + "/" + DEFAULT_FILE_NAME);
+		Path path = Paths.get(filepath + fileName);
 		byte[] data = Files.readAllBytes(path);
 		ByteArrayResource resource = new ByteArrayResource(data);
 		return ResponseEntity.ok()
