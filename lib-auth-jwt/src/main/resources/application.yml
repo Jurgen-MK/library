@@ -11,9 +11,9 @@ security:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://10.64.2.197:3306/TESTDB?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&characterEncoding=utf8
-    username: mariadb
-    password: user602
+    url: jdbc:mysql://192.168.0.102:3306/bibl?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&characterEncoding=utf8
+    username: root
+    password: root
   jackson:
     serialization:
       INDENT_OUTPUT: true

@@ -20,7 +20,6 @@ import kz.lib_mob_client.fragments.StudyGuidesFragment;
 
 public class MainActivity extends AppCompatActivity{
 
-   BoomMenuButton bmb;
    RegulatoryMenuFragment regfrag;
    StudyGuidesFragment sgf;
 

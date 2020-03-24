@@ -9,6 +9,7 @@ import kz.lib_mob_client.entity.UserInfo;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -23,5 +24,8 @@ public interface LibApi {
 
     @POST("regdoc/viewall")
     public Call<List<RegulatoryDocumentation>> getRegDocList(@Header("Authorization") String token);
+
+    @GET("files/getfile")
+    public Call<ResponseBody> getFile(@Header("Authorization") String token, @Query("filepath") String filepath, @Query("fileName") String fileName);
 
 }

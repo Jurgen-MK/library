@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/filenameTV"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_weight="0.2"
+        android:background="@drawable/border"
+        android:gravity="center"
+        android:textColor="#000000" />
+
+    <ImageButton
+        android:id="@+id/downloadButton"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_weight="0.2"
+        android:background="@drawable/border"
+        bind:srcCompat="@drawable/ic_file_download_black_24dp"></ImageButton>
+
+</LinearLayout>

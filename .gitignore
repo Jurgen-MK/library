@@ -1,3 +1,4 @@
 /.metadata
+/lib-auth-jwt/bin
 /lib-mob-client/.idea
 /lib-mob-client/.gradle
