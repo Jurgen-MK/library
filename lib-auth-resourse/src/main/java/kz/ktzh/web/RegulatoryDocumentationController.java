@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kz.ktzh.models.RegulatoryDocumentation;
@@ -20,8 +21,8 @@ public class RegulatoryDocumentationController {
 	
 	
 	@PostMapping(value = "/viewall")
-	public ResponseEntity<List<RegulatoryDocumentation>> getAllRegDoc() {
-		return ResponseEntity.ok(regDocServ.getRegDocWithFiles());
+	public ResponseEntity<List<RegulatoryDocumentation>> getAllRegDoc(@RequestParam int category) {
+		return ResponseEntity.ok(regDocServ.getRegDocWithFiles(category));
 	}
 
 }

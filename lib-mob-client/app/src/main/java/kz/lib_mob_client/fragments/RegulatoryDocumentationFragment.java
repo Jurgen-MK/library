@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eu.davidea.flexibleadapter.FlexibleAdapter;
-import eu.davidea.flexibleadapter.databinding.BindingFlexibleAdapter;
 import eu.davidea.flexibleadapter.items.IFlexible;
 import kz.lib_mob_client.R;
 import kz.lib_mob_client.entity.RegulatoryDocumentation;
@@ -27,30 +26,30 @@ import kz.lib_mob_client.network.NetworkServiceResource;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link StudyGuidesFragment#newInstance} factory method to
+ * Use the {@link RegulatoryDocumentationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StudyGuidesFragment extends Fragment {
+public class RegulatoryDocumentationFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_CATEGORY = "arg_category";
+
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private int category;
+
 
     List<RegulatoryDocumentation> regDocList;
 
     RecyclerView rv;
 
 
-    public StudyGuidesFragment() {
+    public RegulatoryDocumentationFragment() {
         // Required empty public constructor
     }
 
-    public static StudyGuidesFragment newInstance(String param1, String param2) {
-        StudyGuidesFragment fragment = new StudyGuidesFragment();
+    public static RegulatoryDocumentationFragment newInstance(int category) {
+        RegulatoryDocumentationFragment fragment = new RegulatoryDocumentationFragment();
         return fragment;
     }
 
@@ -58,14 +57,14 @@ public class StudyGuidesFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            category = getArguments().getInt(ARG_CATEGORY);
         }
+        Log.i("huitatusargument", String.valueOf(category));
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         regDocList = new ArrayList<>();
         try {
-            regDocList = NetworkServiceResource.getInstance().getJSONApi().getRegDocList("Bearer " + NetworkServiceAuth.getInstance().getAccessToken()).execute().body();
+            regDocList = NetworkServiceResource.getInstance().getJSONApi().getRegDocList("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), category).execute().body();
             Log.i("huitag", "Size - " + regDocList.size());
         } catch (IOException e) {
             e.printStackTrace();

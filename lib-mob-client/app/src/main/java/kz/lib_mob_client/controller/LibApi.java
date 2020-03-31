@@ -23,7 +23,7 @@ public interface LibApi {
     public Call<ResponseBody> doRetister(@Header("Content-Type") String token, @Body UserCreationRequest userCreationRequest);
 
     @POST("regdoc/viewall")
-    public Call<List<RegulatoryDocumentation>> getRegDocList(@Header("Authorization") String token);
+    public Call<List<RegulatoryDocumentation>> getRegDocList(@Header("Authorization") String token, @Query("category") int category);
 
     @GET("files/getfile")
     public Call<ResponseBody> getFile(@Header("Authorization") String token, @Query("filepath") String filepath, @Query("fileName") String fileName);

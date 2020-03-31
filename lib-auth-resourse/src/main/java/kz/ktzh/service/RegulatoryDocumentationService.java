@@ -19,8 +19,8 @@ public class RegulatoryDocumentationService {
 	@Autowired
 	RegulatoryDocumentationFilesRepository regDocFilesRepo;
 	
-	public List<RegulatoryDocumentation> getRegDocWithFiles(){
-		List<RegulatoryDocumentation> regDocList = regDocRepo.findByCategory(19);
+	public List<RegulatoryDocumentation> getRegDocWithFiles(int category){
+		List<RegulatoryDocumentation> regDocList = regDocRepo.findByCategory(category);
 		for (RegulatoryDocumentation regdoc : regDocList) {
 		    regdoc.setFileslist(regDocFilesRepo.findById(regdoc.getId()));
 		}
