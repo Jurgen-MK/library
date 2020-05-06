@@ -1,9 +1,11 @@
 <resources>
+    <string name="placeholder">placeholder</string>
     <string name="app_name">Библиотека</string>
-    <string name="MenuItem1">Нормативно-техническая информация</string>
-    <string name="MenuItem2">Научно-техническая информация</string>
-    <string name="MenuItem3">Видеотека</string>
-    <string name="MenuItem4">Навигатор</string>
+    <string name="MenuItem1">Нормативно-правовая документация</string>
+    <string name="MenuItem2">Нормативно-техническая документация</string>
+    <string name="MenuItem3">Учебно-методическая информация</string>
+    <string name="MenuItem4">Научно-техническая информация</string>
+
     <string-array name="questions">
         <item>Какое прозвище было у вас в детстве?</item>
         <item>В каком городе вы познакомились со своей второй половиной?</item>

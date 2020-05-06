@@ -20,17 +20,18 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/infmapimg"
+                android:id="@+id/lawsimg"
                 android:layout_width="56dp"
                 android:layout_height="46dp"
                 app:srcCompat="@drawable/files" />
 
             <Button
-                android:id="@+id/infmapbtn"
+                android:id="@+id/lawsbtn"
                 android:layout_width="253dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FF82B1FF"
-                android:text="Информационные карты" />
+                android:text="Законы"
+                android:onClick="onRegMenuBtnClick"/>
         </TableRow>
 
         <TableRow
@@ -38,17 +39,18 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/inflistimg"
+                android:id="@+id/codeimg"
                 android:layout_width="56dp"
                 android:layout_height="46dp"
                 app:srcCompat="@drawable/files" />
 
             <Button
-                android:id="@+id/inflistbtn"
+                android:id="@+id/codebtn"
                 android:layout_width="258dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FF82B1FF"
-                android:text="Информационные листки" />
+                android:text="Кодексы"
+                android:onClick="onRegMenuBtnClick"/>
         </TableRow>
 
         <TableRow
@@ -56,17 +58,18 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/blinimg"
+                android:id="@+id/regimg"
                 android:layout_width="56dp"
                 android:layout_height="46dp"
                 app:srcCompat="@drawable/files" />
 
             <Button
-                android:id="@+id/blinbtn"
+                android:id="@+id/regbtn"
                 android:layout_width="258dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FF82B1FF"
-                android:text="Бюллетени технических новшеств" />
+                android:text="Постановления"
+                android:onClick="onRegMenuBtnClick"/>
         </TableRow>
 
         <TableRow
@@ -74,17 +77,18 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/ilimg"
+                android:id="@+id/devprogimg"
                 android:layout_width="56dp"
                 android:layout_height="46dp"
                 app:srcCompat="@drawable/files" />
 
             <Button
-                android:id="@+id/ilbtn"
+                android:id="@+id/devprogtn"
                 android:layout_width="258dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FF82B1FF"
-                android:text="Иллюстрированные альбомы и плакаты" />
+                android:text="Программы развития"
+                android:onClick="onRegMenuBtnClick"/>
         </TableRow>
 
         <TableRow
@@ -92,17 +96,18 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/primg"
+                android:id="@+id/decreeimg"
                 android:layout_width="56dp"
                 android:layout_height="46dp"
                 app:srcCompat="@drawable/files" />
 
             <Button
-                android:id="@+id/prbtn"
+                android:id="@+id/decreebtn"
                 android:layout_width="258dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FF82B1FF"
-                android:text="Статьи из переодических изданий" />
+                android:text="Указы"
+                android:onClick="onRegMenuBtnClick"/>
         </TableRow>
 
         <TableRow
@@ -110,37 +115,21 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/bookimg"
+                android:id="@+id/intdocimg"
                 android:layout_width="56dp"
                 android:layout_height="46dp"
                 app:srcCompat="@drawable/files" />
 
             <Button
-                android:id="@+id/bookbtn"
+                android:id="@+id/intdocbtn"
                 android:layout_width="258dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FF82B1FF"
-                android:text="Книги и учебники" />
+                android:text="Международные документы"
+                android:onClick="onRegMenuBtnClick"/>
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/learnimg"
-                android:layout_width="56dp"
-                android:layout_height="46dp"
-                app:srcCompat="@drawable/files" />
-
-            <Button
-                android:id="@+id/learnbtn"
-                android:layout_width="258dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#FF82B1FF"
-                android:onClick="onStudyGuidesClick"
-                android:text="Учебно-методически пособия" />
-        </TableRow>
 
 
     </TableLayout>
