@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class RegulatoryDocumentationFragment extends Fragment {
     List<RegulatoryDocumentation> regDocList;
 
     RecyclerView rv;
+    TextView titleText;
 
 
     public RegulatoryDocumentationFragment() {
@@ -82,6 +84,8 @@ public class RegulatoryDocumentationFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
+        titleText = view.findViewById(R.id.titleText);
+        switchCategoryTitle();
         List<IFlexible> list = new ArrayList<>();
         list.addAll(regDocList);
         FlexibleAdapter<IFlexible> adapter = new FlexibleAdapter<>(list);
@@ -89,6 +93,48 @@ public class RegulatoryDocumentationFragment extends Fragment {
         adapter.updateDataSet(list, true);
         rv.setAdapter(adapter);
         rv.setLayoutManager(manager);
+
+    }
+
+    public void switchCategoryTitle(){
+        switch (category){
+            case 1:
+                titleText.setText("Законы");
+                break;
+            case 2:
+                titleText.setText("Кодексы");
+                break;
+            case 3:
+                titleText.setText("Постановления");
+                break;
+            case 4:
+                titleText.setText("Программы развития");
+                break;
+            case 5:
+                titleText.setText("Указы");
+                break;
+            case 6:
+                titleText.setText("Международные документы");
+                break;
+            case 13:
+                titleText.setText("Методические указания");
+                break;
+            case 14:
+                titleText.setText("Положения, руководства. Технические указания");
+                break;
+            case 15:
+                titleText.setText("Правила");
+                break;
+            case 16:
+                titleText.setText("Стандарты организации. Технические условия");
+                break;
+            case 17:
+                titleText.setText("Технические процессы. Технологические карты");
+                break;
+            case 18:
+                titleText.setText("Типовые нормы. Нормативы");
+                break;
+        }
     }
 
 

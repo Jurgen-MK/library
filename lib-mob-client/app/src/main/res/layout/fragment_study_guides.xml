@@ -7,16 +7,29 @@
     android:layout_height="match_parent"
         tools:context=".fragments.RegulatoryDocumentationFragment">
 
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="407dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="1dp"
+        android:gravity="center"
+        android:text="заголовок"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/rv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="412dp"
-        android:layout_height="606dp"
-        android:layout_marginTop="125dp"
+        android:layout_height="535dp"
         android:layout_marginEnd="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_study_guides" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,10 +18,12 @@ import com.nightonke.boommenu.Util;
 
 import kz.lib_mob_client.fragments.RegulatoryMenuFragment;
 import kz.lib_mob_client.fragments.RegulatoryDocumentationFragment;
+import kz.lib_mob_client.fragments.TechnicalMenuFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     RegulatoryMenuFragment regfrag;
+    TechnicalMenuFragment techfrag;
     RegulatoryDocumentationFragment rdf;
 
     @Override
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         regfrag = new RegulatoryMenuFragment();
+        techfrag = new TechnicalMenuFragment();
         BoomMenuButton bmb = findViewById(R.id.bmb);
         bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.binder)
@@ -38,16 +41,23 @@ public class MainActivity extends AppCompatActivity {
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        displayFragment(regfrag);
+                        /*FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.frgmCont, regfrag);
-                        fragmentTransaction.commit();
+                        fragmentTransaction.commit();*/
                     }
                 }));
         bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.book)
                 .normalTextRes(R.string.MenuItem2)
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
-                .normalColor(Color.parseColor("#FF82B1FF")));
+                .normalColor(Color.parseColor("#FF82B1FF"))
+                .listener(new OnBMClickListener() {
+                    @Override
+                    public void onBoomButtonClick(int index) {
+                        displayFragment(techfrag);
+                    }
+                }));
         bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.film)
                 .normalTextRes(R.string.MenuItem3)
@@ -94,6 +104,27 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.intdocbtn:
                 args.putInt("arg_category", 6);
+                break;
+            case R.id.instrbtn:
+                args.putInt("arg_category", 1);
+                break;
+            case R.id.guidebtn:
+                args.putInt("arg_category", 13);
+                break;
+            case R.id.provbtn:
+                args.putInt("arg_category", 14);
+                break;
+            case R.id.rulesbtn:
+                args.putInt("arg_category", 15);
+                break;
+            case R.id.standartsbtn:
+                args.putInt("arg_category", 16);
+                break;
+            case R.id.techmapbtn:
+                args.putInt("arg_category", 17);
+                break;
+            case R.id.normbtn:
+                args.putInt("arg_category", 18);
                 break;
         }
         //args.putInt("arg_category", 1);
