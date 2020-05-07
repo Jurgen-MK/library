@@ -16,6 +16,7 @@ import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.Util;
 
+import kz.lib_mob_client.fragments.LearningMenuFragment;
 import kz.lib_mob_client.fragments.RegulatoryMenuFragment;
 import kz.lib_mob_client.fragments.RegulatoryDocumentationFragment;
 import kz.lib_mob_client.fragments.TechnicalMenuFragment;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     RegulatoryMenuFragment regfrag;
     TechnicalMenuFragment techfrag;
+    LearningMenuFragment learfrag;
     RegulatoryDocumentationFragment rdf;
 
     @Override
@@ -32,9 +34,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         regfrag = new RegulatoryMenuFragment();
         techfrag = new TechnicalMenuFragment();
+        learfrag = new LearningMenuFragment();
         BoomMenuButton bmb = findViewById(R.id.bmb);
         bmb.addBuilder(new HamButton.Builder()
-                .normalImageRes(R.drawable.binder)
+                .normalImageRes(R.drawable.filesfolders)
                 .normalTextRes(R.string.MenuItem1)
                 .normalColor(Color.parseColor("#FF82B1FF"))
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }));
         bmb.addBuilder(new HamButton.Builder()
-                .normalImageRes(R.drawable.book)
+                .normalImageRes(R.drawable.pencil)
                 .normalTextRes(R.string.MenuItem2)
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
                 .normalColor(Color.parseColor("#FF82B1FF"))
@@ -59,27 +62,26 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }));
         bmb.addBuilder(new HamButton.Builder()
-                .normalImageRes(R.drawable.film)
+                .normalImageRes(R.drawable.thinking)
                 .normalTextRes(R.string.MenuItem3)
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
-                .normalColor(Color.parseColor("#FF82B1FF")));
+                .normalColor(Color.parseColor("#FF82B1FF"))
+                .listener(new OnBMClickListener() {
+                    @Override
+                    public void onBoomButtonClick(int index) {
+                        displayFragment(learfrag);
+                    }
+                }));
         bmb.addBuilder(new HamButton.Builder()
-                .normalImageRes(R.drawable.circular)
+                .normalImageRes(R.drawable.laboratory)
                 .normalTextRes(R.string.MenuItem4)
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
                 .normalColor(Color.parseColor("#FF82B1FF")));
         bmb.addBuilder(new HamButton.Builder()
-                .normalImageRes(R.drawable.circular)
-                .normalTextRes(R.string.placeholder)
+                .normalImageRes(R.drawable.museum)
+                .normalTextRes(R.string.MenuItem5)
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
                 .normalColor(Color.parseColor("#FF82B1FF")));
-        bmb.addBuilder(new HamButton.Builder()
-                .normalImageRes(R.drawable.circular)
-                .normalTextRes(R.string.placeholder)
-                .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
-                .normalColor(Color.parseColor("#FF82B1FF")));
-
-
     }
 
     public void onRegMenuBtnClick(View v) {
@@ -125,6 +127,18 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.normbtn:
                 args.putInt("arg_category", 18);
+                break;
+            case R.id.refsbtn:
+                args.putInt("arg_category", 20);
+                break;
+            case R.id.lpbtn:
+                args.putInt("arg_category", 21);
+                break;
+            case R.id.articlesbtn:
+                args.putInt("arg_category", 22);
+                break;
+            case R.id.moviesbtn:
+                args.putInt("arg_category", 23);
                 break;
         }
         //args.putInt("arg_category", 1);

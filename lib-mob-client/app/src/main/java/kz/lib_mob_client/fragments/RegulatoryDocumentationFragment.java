@@ -134,6 +134,18 @@ public class RegulatoryDocumentationFragment extends Fragment {
             case 18:
                 titleText.setText("Типовые нормы. Нормативы");
                 break;
+            case 20:
+                titleText.setText("Справочники, словари");
+                break;
+            case 21:
+                titleText.setText("Обучающие программы");
+                break;
+            case 22:
+                titleText.setText("Журнальные статьи");
+                break;
+            case 23:
+                titleText.setText("Учебные фильмы");
+                break;
         }
     }
 

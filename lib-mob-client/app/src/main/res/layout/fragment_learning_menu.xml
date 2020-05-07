@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="313dp"
+        android:layout_height="385dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="140dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/bookimg"
+                android:layout_width="56dp"
+                android:layout_height="46dp"
+                app:srcCompat="@drawable/files" />
+
+            <Button
+                android:id="@+id/bookbtn"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF82B1FF"
+                android:text="Учебники, книги" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/refsimg"
+                android:layout_width="56dp"
+                android:layout_height="46dp"
+                app:srcCompat="@drawable/files" />
+
+            <Button
+                android:id="@+id/refsbtn"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF82B1FF"
+                android:onClick="onRegMenuBtnClick"
+                android:text="Справочники, словари" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/lpimg"
+                android:layout_width="56dp"
+                android:layout_height="46dp"
+                app:srcCompat="@drawable/files" />
+
+            <Button
+                android:id="@+id/lpbtn"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF82B1FF"
+                android:onClick="onRegMenuBtnClick"
+                android:text="Обучающие программы" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/articlesimg"
+                android:layout_width="56dp"
+                android:layout_height="46dp"
+                app:srcCompat="@drawable/files" />
+
+            <Button
+                android:id="@+id/articlesbtn"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF82B1FF"
+                android:onClick="onRegMenuBtnClick"
+                android:text="Журнальные статьи" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/moviessimg"
+                android:layout_width="56dp"
+                android:layout_height="46dp"
+                app:srcCompat="@drawable/files" />
+
+            <Button
+                android:id="@+id/moviesbtn"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF82B1FF"
+                android:onClick="onRegMenuBtnClick"
+                android:text="Учебные фильмы" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/periodimg"
+                android:layout_width="56dp"
+                android:layout_height="46dp"
+                app:srcCompat="@drawable/files" />
+
+            <Button
+                android:id="@+id/periodbtn"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF82B1FF"
+                android:text="Переодические издания" />
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
