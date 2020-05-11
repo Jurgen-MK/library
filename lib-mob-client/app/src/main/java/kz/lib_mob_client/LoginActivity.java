@@ -42,7 +42,7 @@ import ru.tinkoff.decoro.watchers.MaskFormatWatcher;
 public class LoginActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-    public final static String URL_AUTH = "http://192.168.0.100:9000/oauth/token?";
+    public final static String URL_AUTH = "http://10.64.2.156:9000/oauth/token?";
     public final static String CLIENT_ID = "clientId";
     public final static String CLIENT_SECRET = "secret";
 

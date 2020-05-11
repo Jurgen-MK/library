@@ -12,7 +12,7 @@ public class NetworkServiceResource {
 
     private static NetworkServiceResource mInstance;
 
-    private static final String BASE_URL = "http://192.168.0.100:9100";
+    private static final String BASE_URL = "http://10.64.2.156:9100";
     private Retrofit mRetrofit;
     private String accessToken;
     private UserInfo userInfo;
