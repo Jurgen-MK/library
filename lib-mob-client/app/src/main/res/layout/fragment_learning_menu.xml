@@ -30,7 +30,27 @@
                 android:layout_width="253dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FF82B1FF"
+                android:onClick="onBookMenuBtnClick"
                 android:text="Учебники, книги" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/learnimg"
+                android:layout_width="56dp"
+                android:layout_height="46dp"
+                app:srcCompat="@drawable/files" />
+
+            <Button
+                android:id="@+id/learnbtn"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF82B1FF"
+                android:text="Учебные пособия"
+                android:onClick="onBookMenuBtnClick"/>
         </TableRow>
 
         <TableRow
@@ -48,7 +68,7 @@
                 android:layout_width="253dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FF82B1FF"
-                android:onClick="onRegMenuBtnClick"
+                android:onClick="onBookMenuBtnClick"
                 android:text="Справочники, словари" />
         </TableRow>
 

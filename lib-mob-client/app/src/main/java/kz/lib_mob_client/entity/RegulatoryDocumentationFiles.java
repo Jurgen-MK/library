@@ -111,10 +111,13 @@ public class RegulatoryDocumentationFiles  extends AbstractFlexibleItem<Regulato
 				NetworkServiceResource.getInstance().getJSONApi().getFile("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), path, name).enqueue(new Callback<ResponseBody>() {
 					@Override
 					public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-						FileUtils fu = new FileUtils();
-						if (fu.writeResponseBodyToDisk(response.body(), name)) {
+
+						if (FileUtils.writeResponseBodyToDisk(response.body(), name)) {
 							Toast.makeText(v.getContext(), name+" сохранен", Toast.LENGTH_SHORT).show();
+						} else {
+							Toast.makeText(v.getContext(), "Ошибка сохранения", Toast.LENGTH_SHORT).show();
 						}
+
 					}
 					@Override
 					public void onFailure(Call<ResponseBody> call, Throwable t) {

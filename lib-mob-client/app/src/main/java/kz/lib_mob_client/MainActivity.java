@@ -16,6 +16,7 @@ import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.Util;
 
+import kz.lib_mob_client.fragments.AllBookFragment;
 import kz.lib_mob_client.fragments.LearningMenuFragment;
 import kz.lib_mob_client.fragments.RegulatoryMenuFragment;
 import kz.lib_mob_client.fragments.RegulatoryDocumentationFragment;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     TechnicalMenuFragment techfrag;
     LearningMenuFragment learfrag;
     RegulatoryDocumentationFragment rdf;
+    AllBookFragment abf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,9 +143,27 @@ public class MainActivity extends AppCompatActivity {
                 args.putInt("arg_category", 23);
                 break;
         }
-        //args.putInt("arg_category", 1);
         rdf.setArguments(args);
         displayFragment(rdf);
+    }
+
+    public void onBookMenuBtnClick(View v) {
+        abf = new AllBookFragment();
+        Bundle args = new Bundle();
+        switch (v.getId()) {
+            case R.id.bookbtn:
+                args.putInt("arg_status", 1);
+                break;
+            case R.id.learnbtn:
+                args.putInt("arg_status", 2);
+                break;
+            case R.id.refsbtn:
+                args.putInt("arg_status", 3);
+                break;
+        }
+        abf.setArguments(args);
+        displayFragment(abf);
+
     }
 
    /* public void onCodeBtnClick(View v){

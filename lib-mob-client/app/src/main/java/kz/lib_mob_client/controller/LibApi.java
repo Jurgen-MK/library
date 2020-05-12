@@ -3,6 +3,7 @@ package kz.lib_mob_client.controller;
 import java.util.List;
 
 
+import kz.lib_mob_client.entity.AllBook;
 import kz.lib_mob_client.entity.RegulatoryDocumentation;
 import kz.lib_mob_client.entity.UserCreationRequest;
 import kz.lib_mob_client.entity.UserInfo;
@@ -25,7 +26,11 @@ public interface LibApi {
     @POST("regdoc/viewall")
     public Call<List<RegulatoryDocumentation>> getRegDocList(@Header("Authorization") String token, @Query("category") int category);
 
+    @POST("allbook/viewbystatus")
+    public Call<List<AllBook>> getAllBookByStatus(@Header ("Authorization") String token, @Query("status") int status);
+
     @GET("files/getfile")
     public Call<ResponseBody> getFile(@Header("Authorization") String token, @Query("filepath") String filepath, @Query("fileName") String fileName);
+
 
 }

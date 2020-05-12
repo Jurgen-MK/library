@@ -24,6 +24,7 @@ public class FileUtils {
             try {
                 byte[] fileReader = new byte[4096];
 
+
                 long fileSize = body.contentLength();
                 long fileSizeDownloaded = 0;
 
