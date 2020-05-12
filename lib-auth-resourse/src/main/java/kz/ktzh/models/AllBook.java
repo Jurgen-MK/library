@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "AllBook")
 public class AllBook {
@@ -18,8 +20,10 @@ public class AllBook {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String author;	
-	private String doc_name;	
+	private String doc_name;
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date public_date;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date registration_date;
 	private String doc_type;
 	private String n_pages;
