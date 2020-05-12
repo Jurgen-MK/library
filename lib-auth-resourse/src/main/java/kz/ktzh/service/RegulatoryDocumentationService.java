@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kz.ktzh.models.RegulatoryDocumentation;
-import kz.ktzh.models.RegulatoryDocumentationFilesRepository;
-import kz.ktzh.models.RegulatoryDocumentationRepository;
+import kz.ktzh.repo.RegulatoryDocumentationFilesRepository;
+import kz.ktzh.repo.RegulatoryDocumentationRepository;
 
 
 @Service

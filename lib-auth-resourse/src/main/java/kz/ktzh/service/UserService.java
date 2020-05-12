@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kz.ktzh.models.UserInfo;
-import kz.ktzh.models.UserInfoRepository;
-import kz.ktzh.models.UserRepository;
+import kz.ktzh.repo.UserInfoRepository;
+import kz.ktzh.repo.UserRepository;
 
 
 @Service

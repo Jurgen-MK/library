@@ -15,7 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import kz.ktzh.models.UserInfo;
-import kz.ktzh.models.UserInfoRepository;
+import kz.ktzh.repo.UserInfoRepository;
 import kz.ktzh.service.UserService;
 
 @RunWith(SpringRunner.class)

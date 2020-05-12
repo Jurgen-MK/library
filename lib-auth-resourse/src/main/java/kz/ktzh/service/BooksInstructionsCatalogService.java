@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kz.ktzh.models.BooksInstructionsCatalog;
-import kz.ktzh.models.BooksInstructionsCatalogRepository;
+import kz.ktzh.repo.BooksInstructionsCatalogRepository;
 
 @Service
 public class BooksInstructionsCatalogService {
