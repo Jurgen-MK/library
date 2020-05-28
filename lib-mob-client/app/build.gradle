@@ -23,6 +23,10 @@ android {
     dataBinding {
         enabled = true
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 }
 
 repositories {
@@ -54,6 +58,7 @@ dependencies {
     implementation 'eu.davidea:flexible-adapter:5.1.0'
     implementation 'eu.davidea:flexible-adapter-ui:1.0.0'
     implementation 'eu.davidea:flexible-adapter-livedata:1.0.0-b3'
+    implementation "com.github.skydoves:powerspinner:1.0.8"
     // From 1.0.0-b3, library is compiled with data binding v2
     implementation 'eu.davidea:flexible-adapter-databinding:1.0.0'
 }

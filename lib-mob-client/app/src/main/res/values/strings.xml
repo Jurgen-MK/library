@@ -1,7 +1,7 @@
 <resources>
     <string name="placeholder">placeholder</string>
     <string name="app_name">Библиотека</string>
-    <string name="MenuItem1">Нормативно-правовая документация</string>
+    <string name="MenuItem1">Поиск</string>
     <string name="MenuItem2">Нормативно-техническая документация</string>
     <string name="MenuItem3">Учебно-методическая информация</string>
     <string name="MenuItem4">Научно-техническая информация</string>
@@ -26,6 +26,30 @@
         <item>Какая девичья фамилия вашей бабушки?</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="category">
+        <!--npdntd-->
+        <item>Законы</item>
+        <item>Кодексы</item>
+        <item>Постановления</item>
+        <item>Программы развития</item>
+        <item>Указы</item>
+        <item>Международные документы</item>
+        <item>Инструкции</item>
+        <item>Методические указания</item>
+        <item>Предложения, руководства</item>
+        <item>Правила</item>
+        <item>Стандарты организации. Регламенты</item>
+        <item>Технические процессы. Технологические карты</item>
+        <item>Типовые нормы. Нормативы</item>
+        <!--allbook-->
+        <item>Учебники, книги</item>
+        <item>Учебные пособия</item>
+        <item>Справочники</item>
+        <!--article-->
+        <item>Журнальные статьи</item>
+        <!--video-->
+        <item>Учебные фильмы</item>
+    </string-array>
+
+
 </resources>

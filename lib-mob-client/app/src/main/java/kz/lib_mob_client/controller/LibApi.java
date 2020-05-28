@@ -5,6 +5,8 @@ import java.util.List;
 
 import kz.lib_mob_client.entity.AllBook;
 import kz.lib_mob_client.entity.RegulatoryDocumentation;
+import kz.lib_mob_client.entity.SearchRequest;
+import kz.lib_mob_client.entity.SearchRespond;
 import kz.lib_mob_client.entity.UserCreationRequest;
 import kz.lib_mob_client.entity.UserInfo;
 import okhttp3.ResponseBody;
@@ -31,6 +33,12 @@ public interface LibApi {
 
     @GET("files/getfile")
     public Call<ResponseBody> getFile(@Header("Authorization") String token, @Query("filepath") String filepath, @Query("fileName") String fileName);
+
+    @POST("search/searchallbyname")
+    public Call<List<SearchRespond>> searchAllByName(@Header("Authorization") String token, @Query("name") String name);
+
+    @POST("search/searchbycategory")
+    public Call<List<SearchRespond>> searchByCategory(@Header("Authorization") String token, @Body SearchRequest searchRequest);
 
 
 }

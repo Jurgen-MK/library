@@ -20,6 +20,7 @@ import kz.lib_mob_client.fragments.AllBookFragment;
 import kz.lib_mob_client.fragments.LearningMenuFragment;
 import kz.lib_mob_client.fragments.RegulatoryMenuFragment;
 import kz.lib_mob_client.fragments.RegulatoryDocumentationFragment;
+import kz.lib_mob_client.fragments.SearchFragment;
 import kz.lib_mob_client.fragments.TechnicalMenuFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     LearningMenuFragment learfrag;
     RegulatoryDocumentationFragment rdf;
     AllBookFragment abf;
+    SearchFragment sf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         regfrag = new RegulatoryMenuFragment();
         techfrag = new TechnicalMenuFragment();
         learfrag = new LearningMenuFragment();
+        sf = new SearchFragment();
         BoomMenuButton bmb = findViewById(R.id.bmb);
         bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.filesfolders)
@@ -46,13 +49,10 @@ public class MainActivity extends AppCompatActivity {
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-                        displayFragment(regfrag);
-                        /*FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.frgmCont, regfrag);
-                        fragmentTransaction.commit();*/
+                        displayFragment(sf);
                     }
                 }));
-        bmb.addBuilder(new HamButton.Builder()
+        /*bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.pencil)
                 .normalTextRes(R.string.MenuItem2)
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 .normalImageRes(R.drawable.museum)
                 .normalTextRes(R.string.MenuItem5)
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
-                .normalColor(Color.parseColor("#FF82B1FF")));
+                .normalColor(Color.parseColor("#FF82B1FF")));*/
     }
 
     public void onRegMenuBtnClick(View v) {
