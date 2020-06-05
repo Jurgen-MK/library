@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import kz.lib_mob_client.entity.AllBook;
+import kz.lib_mob_client.entity.News;
 import kz.lib_mob_client.entity.RegulatoryDocumentation;
 import kz.lib_mob_client.entity.SearchRequest;
 import kz.lib_mob_client.entity.SearchRespond;
@@ -39,6 +40,12 @@ public interface LibApi {
 
     @POST("search/searchbycategory")
     public Call<List<SearchRespond>> searchByCategory(@Header("Authorization") String token, @Body SearchRequest searchRequest);
+
+    @POST("news/listnews")
+    public Call<List<News>> getNewsList(@Header("Authorization") String token);
+
+    @POST("news/newstextbyid")
+    public Call<ResponseBody> getNewsText(@Header("Authorization") String token, @Query("id") int id);
 
 
 }

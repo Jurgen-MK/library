@@ -2,7 +2,7 @@
     <string name="placeholder">placeholder</string>
     <string name="app_name">Библиотека</string>
     <string name="MenuItem1">Поиск</string>
-    <string name="MenuItem2">Нормативно-техническая документация</string>
+    <string name="MenuItem2">Новости</string>
     <string name="MenuItem3">Учебно-методическая информация</string>
     <string name="MenuItem4">Научно-техническая информация</string>
     <string name="MenuItem5">Издательско-музейная деятельность</string>
@@ -50,6 +50,9 @@
         <!--video-->
         <item>Учебные фильмы</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -8,8 +8,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import com.nightonke.boommenu.BoomButtons.HamButton;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
@@ -18,6 +16,7 @@ import com.nightonke.boommenu.Util;
 
 import kz.lib_mob_client.fragments.AllBookFragment;
 import kz.lib_mob_client.fragments.LearningMenuFragment;
+import kz.lib_mob_client.fragments.NewsFragment;
 import kz.lib_mob_client.fragments.RegulatoryMenuFragment;
 import kz.lib_mob_client.fragments.RegulatoryDocumentationFragment;
 import kz.lib_mob_client.fragments.SearchFragment;
@@ -31,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     RegulatoryDocumentationFragment rdf;
     AllBookFragment abf;
     SearchFragment sf;
+    NewsFragment nf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         techfrag = new TechnicalMenuFragment();
         learfrag = new LearningMenuFragment();
         sf = new SearchFragment();
+        nf = new NewsFragment();
         BoomMenuButton bmb = findViewById(R.id.bmb);
         bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.filesfolders)
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         displayFragment(sf);
                     }
                 }));
-        /*bmb.addBuilder(new HamButton.Builder()
+        bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.pencil)
                 .normalTextRes(R.string.MenuItem2)
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
@@ -60,10 +61,10 @@ public class MainActivity extends AppCompatActivity {
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-                        displayFragment(techfrag);
+                        displayFragment(nf);
                     }
                 }));
-        bmb.addBuilder(new HamButton.Builder()
+       /* bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.thinking)
                 .normalTextRes(R.string.MenuItem3)
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 .normalColor(Color.parseColor("#FF82B1FF")));*/
     }
 
-    public void onRegMenuBtnClick(View v) {
+    /*public void onRegMenuBtnClick(View v) {
         rdf = new RegulatoryDocumentationFragment();
         Bundle args = new Bundle();
 
@@ -164,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         abf.setArguments(args);
         displayFragment(abf);
 
-    }
+    }*/
 
    /* public void onCodeBtnClick(View v){
         rdf = new RegulatoryDocumentationFragment();
