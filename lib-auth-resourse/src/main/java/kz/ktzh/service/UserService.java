@@ -11,13 +11,16 @@ import kz.ktzh.repo.UserRepository;
 @Service
 public class UserService {
 	
+
+
+	
 	@Autowired
 	UserInfoRepository userInfoRepo;
 	
 	@Autowired 
 	UserRepository userRepo;
 	
-	public UserInfo getUserInfo(String username) {
+	public UserInfo getUserInfo(String username) {		
 		return userInfoRepo.findByUsername(username);
 	}
 	
@@ -25,7 +28,7 @@ public class UserService {
 		try {
 		userInfoRepo.save(userInfo);
 		} catch(Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();			
 			return "0";
 		}
 		return "1";
