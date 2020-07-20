@@ -14,9 +14,17 @@ spring:
   datasource:
     sqlScriptEncoding: UTF-8
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://10.64.2.197:3306/bibl2?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: mariadb
-    password: user602
+    url: jdbc:mysql://192.168.0.102:3306/bibl?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: root
   jackson:
     serialization:
       INDENT_OUTPUT: true
+logging:
+  file: C:/logs/dev_app.log
+  pattern:    
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework.web: DEBUG
+    kz.ktzh: DEBUG
+    org.hibernate: DEBUG
