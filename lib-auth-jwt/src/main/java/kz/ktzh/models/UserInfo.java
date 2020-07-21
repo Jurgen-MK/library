@@ -26,7 +26,7 @@ public class UserInfo {
 	private int nti;
 	private int line;
 	private int region;
-	private int danger;
+	private int position;
 	private String phone;
 	private String email;
 	private String education;
@@ -37,7 +37,7 @@ public class UserInfo {
 	
 
 	public UserInfo(int id, String username, String name, String surname, String patronymic, Date birthday,
-			String address, int branch, int department, int nti, int line, int region, int danger, String phone,
+			String address, int branch, int department, int nti, int line, int region, int position, String phone,
 			String email, String education) {		
 		this.id = id;
 		this.username = username;
@@ -51,7 +51,7 @@ public class UserInfo {
 		this.nti = nti;
 		this.line = line;
 		this.region = region;
-		this.danger = danger;
+		this.setPosition(position);
 		this.phone = phone;
 		this.email = email;
 		this.education = education;
@@ -153,13 +153,7 @@ public class UserInfo {
 		this.region = region;
 	}
 
-	public int getDanger() {
-		return danger;
-	}
-
-	public void setDanger(int danger) {
-		this.danger = danger;
-	}
+	
 
 	public String getPhone() {
 		return phone;
@@ -183,6 +177,18 @@ public class UserInfo {
 
 	public void setEducation(String education) {
 		this.education = education;
+	}
+
+
+
+	public int getPosition() {
+		return position;
+	}
+
+
+
+	public void setPosition(int position) {
+		this.position = position;
 	}
 
 
