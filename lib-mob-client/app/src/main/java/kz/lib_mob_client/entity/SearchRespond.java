@@ -1,12 +1,13 @@
 package kz.lib_mob_client.entity;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.util.List;
-import java.util.ServiceConfigurationError;
 
 import eu.davidea.flexibleadapter.FlexibleAdapter;
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem;
@@ -80,8 +81,7 @@ public class SearchRespond extends AbstractFlexibleItem<SearchRespond.ViewHolder
 				NetworkServiceResource.getInstance().getJSONApi().getFile("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), filePath, fileName).enqueue(new Callback<ResponseBody>() {
 					@Override
 					public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-						if (FileUtils.writeResponseBodyToDisk(response.body(), fileName)) {
+						if (FileUtils.writeResponseBodyToDisk(v.getContext(), response.body(), fileName)) {
 							Toast.makeText(v.getContext(), fileName+" сохранен", Toast.LENGTH_LONG).show();
 						} else {
 							Toast.makeText(v.getContext(), "Файл не найден", Toast.LENGTH_LONG).show();
@@ -100,7 +100,6 @@ public class SearchRespond extends AbstractFlexibleItem<SearchRespond.ViewHolder
 		public TextView descriptionTV;
 		public TextView filenameTV;
 		public ImageButton downloadButton;
-
 		public ViewHolder(View view, FlexibleAdapter adapter) {
 			super(view, adapter);
 			descriptionTV = view.findViewById(R.id.descriptionTV);

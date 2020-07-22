@@ -1,5 +1,7 @@
 package kz.lib_mob_client.entity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +11,13 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,13 +120,11 @@ public class RegulatoryDocumentationFiles  extends AbstractFlexibleItem<Regulato
 				NetworkServiceResource.getInstance().getJSONApi().getFile("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), path, name).enqueue(new Callback<ResponseBody>() {
 					@Override
 					public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-						if (FileUtils.writeResponseBodyToDisk(response.body(), name)) {
+						if (FileUtils.writeResponseBodyToDisk(v.getContext(), response.body(), name)) {
 							Toast.makeText(v.getContext(), name+" сохранен", Toast.LENGTH_SHORT).show();
 						} else {
 							Toast.makeText(v.getContext(), "Ошибка сохранения", Toast.LENGTH_SHORT).show();
 						}
-
 					}
 					@Override
 					public void onFailure(Call<ResponseBody> call, Throwable t) {

@@ -1,6 +1,8 @@
 package kz.lib_mob_client.entity;
 
 
+import android.Manifest;
+import android.app.Activity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -9,6 +11,13 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -242,8 +251,7 @@ public class AllBook extends AbstractFlexibleItem<AllBook.ViewHolder> {
 				NetworkServiceResource.getInstance().getJSONApi().getFile("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), filePath, fileName).enqueue(new Callback<ResponseBody>() {
 					@Override
 					public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-						if (FileUtils.writeResponseBodyToDisk(response.body(), fileName)) {
+						if (FileUtils.writeResponseBodyToDisk(v.getContext(), response.body(), fileName)) {
 							Toast.makeText(v.getContext(), fileName+" сохранен", Toast.LENGTH_LONG).show();
 						} else {
 							Toast.makeText(v.getContext(), "Файл не найден", Toast.LENGTH_LONG).show();

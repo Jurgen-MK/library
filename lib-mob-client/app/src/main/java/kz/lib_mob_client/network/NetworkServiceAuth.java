@@ -10,7 +10,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class NetworkServiceAuth {
     private static NetworkServiceAuth mInstance;
 
-    private static final String BASE_URL_REG = "http://192.168.0.101:9000";
+    private static final String BASE_URL_REG = "http://192.168.1.104:9000";
     private Retrofit mRetrofit;
     private String accessToken;
 

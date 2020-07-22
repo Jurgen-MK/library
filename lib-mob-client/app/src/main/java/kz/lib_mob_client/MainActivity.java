@@ -5,10 +5,23 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.widget.Toast;
 
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 import com.nightonke.boommenu.BoomButtons.HamButton;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomMenuButton;
@@ -31,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     AllBookFragment abf;
     SearchFragment sf;
     NewsFragment nf;
+    private int SETTINGS_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         sf = new SearchFragment();
         nf = new NewsFragment();
         BoomMenuButton bmb = findViewById(R.id.bmb);
+
         bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.filesfolders)
                 .normalTextRes(R.string.MenuItem1)
@@ -49,9 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
                 .listener(new OnBMClickListener() {
                     @Override
-                    public void onBoomButtonClick(int index) {
-                        displayFragment(sf);
-                    }
+                    public void onBoomButtonClick(int index) {  displayFragment(sf); }
                 }));
         bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.pencil)
@@ -64,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                         displayFragment(nf);
                     }
                 }));
+
        /* bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.thinking)
                 .normalTextRes(R.string.MenuItem3)
@@ -175,10 +189,61 @@ public class MainActivity extends AppCompatActivity {
         displayFragment(rdf);
     }*/
 
+    /*@Override
+    protected void onResume() {
+        super.onResume();
+        Dexter.withActivity(MainActivity.this).
+                withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).
+                withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        Toast.makeText(MainActivity.this, "Картинка выбрана!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        showSettingsDialog();
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).onSameThread().check();
+    }*/
+
     private void displayFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frgmCont, fragment);
         fragmentTransaction.commit();
+    }
+
+    private void showSettingsDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Нужно разрешение");
+        builder.setMessage("Этому приложению требуется разрешение для доступа файловой системе. Вы можете дать разрешение в настройках");
+        builder.setPositiveButton("НАСТРОЙКИ", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                openSettings();
+            }
+        });
+        builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+
+    }
+
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", "kz.lib_mob_client", null);
+        intent.setData(uri);
+        startActivityForResult(intent, SETTINGS_REQUEST_CODE);
     }
 
 }
