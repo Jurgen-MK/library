@@ -42,7 +42,7 @@ import ru.tinkoff.decoro.watchers.MaskFormatWatcher;
 public class LoginActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-    public final static String URL_AUTH = "http://192.168.1.104:9000/oauth/token?";
+    public final static String URL_AUTH = "http://192.168.1.100:9000/oauth/token?";
     public final static String CLIENT_ID = "clientId";
     public final static String CLIENT_SECRET = "secret";
 
@@ -220,6 +220,7 @@ public class LoginActivity extends AppCompatActivity {
         NetworkServiceResource.getInstance().setAccessToken(token);
         NetworkServiceAuth.getInstance().setAccessToken(token);
         Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra(EXTRA_MESSAGE, username);
         startActivity(intent);
     }

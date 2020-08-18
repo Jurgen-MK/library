@@ -6,6 +6,7 @@ import java.util.List;
 import kz.lib_mob_client.entity.AllBook;
 import kz.lib_mob_client.entity.News;
 import kz.lib_mob_client.entity.RegulatoryDocumentation;
+import kz.lib_mob_client.entity.ReportRequest;
 import kz.lib_mob_client.entity.SearchRequest;
 import kz.lib_mob_client.entity.SearchRespond;
 import kz.lib_mob_client.entity.UserCreationRequest;
@@ -47,5 +48,7 @@ public interface LibApi {
     @POST("news/newstextbyid")
     public Call<ResponseBody> getNewsText(@Header("Authorization") String token, @Query("id") int id);
 
+    @POST("report/get")
+    public Call<ResponseBody> getReport(@Header("Authorization") String token, @Body ReportRequest reportRequest);
 
 }

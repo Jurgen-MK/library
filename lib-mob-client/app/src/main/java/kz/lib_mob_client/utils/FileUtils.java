@@ -8,27 +8,28 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.ParcelFileDescriptor;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
 
 import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 import okhttp3.ResponseBody;
-
-import static androidx.core.app.ActivityCompat.startActivityForResult;
 
 public class FileUtils {
     static boolean result;
@@ -40,22 +41,24 @@ public class FileUtils {
         ctx = context;
         act = (Activity) context;
         Dexter.withActivity((Activity) context).
-                withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).
-                withListener(new PermissionListener() {
+                withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE).
+                withListener(new MultiplePermissionsListener() {
                     @Override
-                    public void onPermissionGranted(PermissionGrantedResponse response) {
-                        result = toDisc(body, name);
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        if (report.areAllPermissionsGranted()) {
+                            result = toDisc(body, name);
+                        }
+
+                        // check for permanent denial of any permission
+                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            result = false;
+                            showSettingsDialog();
+                        }
                     }
 
                     @Override
-                    public void onPermissionDenied(PermissionDeniedResponse response) {
-                        result = false;
-                        showSettingsDialog();
-//                        Toast.makeText(context, "NO PERMISSION", Toast.LENGTH_SHORT);
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
                         token.continuePermissionRequest();
                     }
                 }).check();
@@ -65,8 +68,7 @@ public class FileUtils {
     public static boolean toDisc(ResponseBody body, String name){
         try {
             // todo change the file location/name according to your needs
-            File file = new File(Environment.getExternalStorageDirectory().toString()+File.separator+name);
-
+            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+File.separator+name);
             InputStream inputStream = null;
             OutputStream outputStream = null;
 
@@ -98,6 +100,7 @@ public class FileUtils {
 
                 return true;
             } catch (Exception e) {
+                e.printStackTrace();
                 return false;
             } finally {
                 if (inputStream != null) {
@@ -109,6 +112,7 @@ public class FileUtils {
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }

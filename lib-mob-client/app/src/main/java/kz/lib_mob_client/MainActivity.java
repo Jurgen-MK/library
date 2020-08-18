@@ -1,7 +1,9 @@
 package kz.lib_mob_client;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
@@ -14,6 +16,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.karumi.dexter.Dexter;
@@ -28,12 +31,14 @@ import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.Util;
 
 import kz.lib_mob_client.fragments.AllBookFragment;
+import kz.lib_mob_client.fragments.InnovationReportFragment;
 import kz.lib_mob_client.fragments.LearningMenuFragment;
 import kz.lib_mob_client.fragments.NewsFragment;
 import kz.lib_mob_client.fragments.RegulatoryMenuFragment;
 import kz.lib_mob_client.fragments.RegulatoryDocumentationFragment;
 import kz.lib_mob_client.fragments.SearchFragment;
 import kz.lib_mob_client.fragments.TechnicalMenuFragment;
+import kz.lib_mob_client.utils.SAFUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,7 +49,10 @@ public class MainActivity extends AppCompatActivity {
     AllBookFragment abf;
     SearchFragment sf;
     NewsFragment nf;
+    InnovationReportFragment irf;
     private int SETTINGS_REQUEST_CODE = 1;
+    private long backPressedTime;
+    private Toast backToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         learfrag = new LearningMenuFragment();
         sf = new SearchFragment();
         nf = new NewsFragment();
+        irf = new InnovationReportFragment();
         BoomMenuButton bmb = findViewById(R.id.bmb);
 
         bmb.addBuilder(new HamButton.Builder()
@@ -77,8 +86,19 @@ public class MainActivity extends AppCompatActivity {
                         displayFragment(nf);
                     }
                 }));
+        bmb.addBuilder(new HamButton.Builder()
+                .normalImageRes(R.drawable.pencil)
+                .normalTextRes(R.string.MenuItem6)
+                .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
+                .normalColor(Color.parseColor("#FF82B1FF"))
+                .listener(new OnBMClickListener() {
+                    @Override
+                    public void onBoomButtonClick(int index) {
+                        displayFragment(irf);
+                    }
+                }));
 
-       /* bmb.addBuilder(new HamButton.Builder()
+        /*bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.thinking)
                 .normalTextRes(R.string.MenuItem3)
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
@@ -215,6 +235,9 @@ public class MainActivity extends AppCompatActivity {
     private void displayFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frgmCont, fragment);
+//        String frName = fragment.getClass().getCanonicalName();
+//        Log.i("Fragment Name ", frName);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
@@ -246,4 +269,30 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, SETTINGS_REQUEST_CODE);
     }
 
+    @Override
+    public void onBackPressed() {
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        } else {
+            if (backPressedTime + 2000 > System.currentTimeMillis()){
+                backToast.cancel();
+                super.onBackPressed();
+                return;
+            } else {
+                backToast = Toast.makeText(this, "Нажмите еще раз, чтобы выйти", Toast.LENGTH_SHORT);
+                backToast.show();
+            }
+            backPressedTime = System.currentTimeMillis();
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 }
