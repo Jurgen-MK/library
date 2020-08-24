@@ -54,13 +54,13 @@ public class UserService {
 				// List<Users> tempuser = userRepo.findByUsername(user.getUsername());
 				userInfo.setId(user.getId());
 				userInfoRepo.save(userInfo);
-				return "1";
+				return "200";
 			} catch (Exception e) {
 				e.printStackTrace();
-				return "3";
+				return "500";
 			}
 		} else {
-			return "0";
+			return "100";
 		}
 	}
 
@@ -72,13 +72,13 @@ public class UserService {
 		try {			
 			if (passwordEnc.matches(oldpass, userDao.getPassword(username))) {
 				userDao.resetPassword(username, passwordEnc.encode(newpass), md5String(newpass));
-				return "1";
+				return "200";
 			} else {
-				return "0";
+				return "100";
 			}
 		} catch (NoSuchAlgorithmException e) {			
 			e.printStackTrace();
-			return "3";
+			return "500";
 		}
 	}
 
@@ -86,13 +86,13 @@ public class UserService {
 		try {
 			if (md5String(answer).equals(userDao.getAnswer(username))) {
 				userDao.resetPassword(username, passwordEnc.encode(newpass), md5String(newpass));
-				return "1";
+				return "200";
 			} else {
-				return "0";
+				return "100";
 			}
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
-			return "3";
+			return "500";
 		}
 
 	}

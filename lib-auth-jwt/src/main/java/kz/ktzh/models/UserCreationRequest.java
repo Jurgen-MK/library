@@ -18,4 +18,12 @@ public class UserCreationRequest {
 		return userInfo;
 	}
 
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
+	}
+
 }

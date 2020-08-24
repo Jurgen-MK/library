@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+  </head>
+  	<body>
+  		<div class="container-fluid">
+  			<div class="container justify-content-center mt-3">
+  				<form action="/user/forgot" method="post">
+				<h2 >Сброс пароля</h2>
+				<hr>
+				<p >Для сброса пароля введите логин и нажмите отправить.</p>
+				<p class="text-danger" th:text="*{message}" />
+				<div class="form-group">
+					<label>Логин</label> <input type="text" name="username"
+						class="form-control" placeholder="Логин" required minlength="3"
+						maxlength="256" th:value="*{username}"> 
+						<small id="usernameHelp"
+						class="form-text text-muted"> Длина логина должна быть не
+						менее 3-х символов </small>						
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Отправить</button>
+			</form>
+  			</div>
+  		</div>	
+	</body>
+</html> 
