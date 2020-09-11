@@ -19,9 +19,11 @@ import java.util.List;
 import eu.davidea.flexibleadapter.FlexibleAdapter;
 import eu.davidea.flexibleadapter.items.IFlexible;
 import kz.lib_mob_client.R;
+import kz.lib_mob_client.controller.ServiceApi;
+import kz.lib_mob_client.network.ServiceAuth;
+import kz.lib_mob_client.auth_utils.TokenManager;
 import kz.lib_mob_client.entity.News;
-import kz.lib_mob_client.network.NetworkService;
-import kz.lib_mob_client.network.NetworkServiceAuth;
+import retrofit2.Call;
 
 
 /**
@@ -42,6 +44,7 @@ public class NewsFragment extends Fragment {
     WebView webView;
     RecyclerView rv;
     List<News> listNews;
+    TokenManager tokenManager;
 
     public NewsFragment() {
         // Required empty public constructor
@@ -72,11 +75,18 @@ public class NewsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        tokenManager = TokenManager.getInstance(getContext().getSharedPreferences("prefs", getContext().MODE_PRIVATE));
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
         listNews = new ArrayList<>();
+        ServiceApi serviceApi = ServiceAuth.createService(ServiceApi.class, tokenManager);
+        Call<List<News>> callRes = serviceApi.getNews();
+
         try {
-            listNews = NetworkService.getInstance().getJSONApi().getNewsList("Bearer " + NetworkServiceAuth.getInstance().getAccessToken()).execute().body();
+            listNews = callRes.execute().body();
+//            listNews = NetworkService.getInstance().getJSONApi().getNewsList("Bearer " + NetworkServiceAuth.getInstance().getAccessToken()).execute().body();
         } catch (IOException e) {
             e.printStackTrace();
         }

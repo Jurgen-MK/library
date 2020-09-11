@@ -28,9 +28,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import kz.lib_mob_client.auth_utils.TokenManager;
+import kz.lib_mob_client.controller.ServiceApi;
 import kz.lib_mob_client.entity.ReportRequest;
 import kz.lib_mob_client.network.NetworkServiceAuth;
 import kz.lib_mob_client.network.NetworkServiceResource;
+import kz.lib_mob_client.network.ServiceAuth;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,12 +46,14 @@ public class SAFUtils {
     private static Context ctx;
     private static String dtFrom;
     private static String dtTo;
+    private static TokenManager tokenManager;
 
 //    public SAFUtils(Activity activity){
 //        this.activity = activity;
 //    }
 
     public static void initSAF(Activity activity, String dateFrom, String dateTo){
+        tokenManager = TokenManager.getInstance(activity.getSharedPreferences("prefs", activity.MODE_PRIVATE));
         act = activity;
         Dexter.withActivity(act).
                 withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -82,30 +87,51 @@ public class SAFUtils {
     }
 
     public static void downloadFile(Uri uri, String dateFrom, String dateTo){
-        NetworkServiceResource.
-                getInstance().
-                getJSONApi().
-                getReport("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(),
-                        new ReportRequest("InnoReport", dateFrom, dateTo)).
-                enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        try {
-                            if (writeFileContent(uri, response.body().bytes())){
-                                Log.i("Загрузка завершена!", "Загрузка завершена!");
-                                Toast.makeText(act, "Загрузка завершена!", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+        ServiceApi serviceApi = ServiceAuth.createService(ServiceApi.class, tokenManager);
+        Call<ResponseBody> call = serviceApi.getReport(new ReportRequest("InnoReport", dateFrom, dateTo));
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    if (writeFileContent(uri, response.body().bytes())){
+                        Log.i("Загрузка завершена!", "Загрузка завершена!");
+                        Toast.makeText(act, "Загрузка завершена!", Toast.LENGTH_SHORT).show();
                     }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Log.i("Ошибка при загрузке!", "Ошибка при загрузке!");
-                        Toast.makeText(act, "Ошибка при загрузке!", Toast.LENGTH_SHORT);
-                    }
-                });
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.i("Ошибка при загрузке!", "Ошибка при загрузке!");
+                Toast.makeText(act, "Ошибка при загрузке!", Toast.LENGTH_SHORT);
+            }
+        });
+//        NetworkServiceResource.
+//                getInstance().
+//                getJSONApi().
+//                getReport("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(),
+//                        new ReportRequest("InnoReport", dateFrom, dateTo)).
+//                enqueue(new Callback<ResponseBody>() {
+//                    @Override
+//                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                        try {
+//                            if (writeFileContent(uri, response.body().bytes())){
+//                                Log.i("Загрузка завершена!", "Загрузка завершена!");
+//                                Toast.makeText(act, "Загрузка завершена!", Toast.LENGTH_SHORT).show();
+//                            }
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                        Log.i("Ошибка при загрузке!", "Ошибка при загрузке!");
+//                        Toast.makeText(act, "Ошибка при загрузке!", Toast.LENGTH_SHORT);
+//                    }
+//                });
     }
 
     private static boolean writeFileContent(Uri uri, byte[] fileBytes) {

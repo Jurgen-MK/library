@@ -25,7 +25,7 @@ public interface LibApi {
     public Call<UserInfo> getUserInfo(@Header("Authorization") String token, @Query("username") String username);
 
     @POST("/user/register")
-    public Call<ResponseBody> doRetister(@Header("Content-Type") String token, @Body UserCreationRequest userCreationRequest);
+    public Call<ResponseBody> doRegister(@Header("Content-Type") String token, @Body UserCreationRequest userCreationRequest);
 
     @POST("regdoc/viewall")
     public Call<List<RegulatoryDocumentation>> getRegDocList(@Header("Authorization") String token, @Query("category") int category);

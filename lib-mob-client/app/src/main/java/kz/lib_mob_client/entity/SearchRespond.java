@@ -14,8 +14,11 @@ import eu.davidea.flexibleadapter.items.AbstractFlexibleItem;
 import eu.davidea.flexibleadapter.items.IFlexible;
 import eu.davidea.viewholders.FlexibleViewHolder;
 import kz.lib_mob_client.R;
+import kz.lib_mob_client.auth_utils.TokenManager;
+import kz.lib_mob_client.controller.ServiceApi;
 import kz.lib_mob_client.network.NetworkServiceAuth;
 import kz.lib_mob_client.network.NetworkServiceResource;
+import kz.lib_mob_client.network.ServiceAuth;
 import kz.lib_mob_client.utils.FileUtils;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -78,7 +81,11 @@ public class SearchRespond extends AbstractFlexibleItem<SearchRespond.ViewHolder
 		holder.downloadButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(final View v) {
-				NetworkServiceResource.getInstance().getJSONApi().getFile("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), filePath, fileName).enqueue(new Callback<ResponseBody>() {
+				Context ctx = v.getContext();
+				TokenManager tokenManager = TokenManager.getInstance(ctx.getSharedPreferences("prefs", ctx.MODE_PRIVATE));
+				ServiceApi serviceApi = ServiceAuth.createService(ServiceApi.class, tokenManager);
+				Call<ResponseBody> call = serviceApi.getFile(filePath, fileName);
+				call.enqueue(new Callback<ResponseBody>() {
 					@Override
 					public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 						if (FileUtils.writeResponseBodyToDisk(v.getContext(), response.body(), fileName)) {
@@ -87,11 +94,26 @@ public class SearchRespond extends AbstractFlexibleItem<SearchRespond.ViewHolder
 							Toast.makeText(v.getContext(), "Файл не найден", Toast.LENGTH_LONG).show();
 						}
 					}
+
 					@Override
 					public void onFailure(Call<ResponseBody> call, Throwable t) {
 						Toast.makeText(v.getContext(), "Файл не найден", Toast.LENGTH_LONG).show();
 					}
 				});
+//				NetworkServiceResource.getInstance().getJSONApi().getFile("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), filePath, fileName).enqueue(new Callback<ResponseBody>() {
+//					@Override
+//					public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//						if (FileUtils.writeResponseBodyToDisk(v.getContext(), response.body(), fileName)) {
+//							Toast.makeText(v.getContext(), fileName+" сохранен", Toast.LENGTH_LONG).show();
+//						} else {
+//							Toast.makeText(v.getContext(), "Файл не найден", Toast.LENGTH_LONG).show();
+//						}
+//					}
+//					@Override
+//					public void onFailure(Call<ResponseBody> call, Throwable t) {
+//						Toast.makeText(v.getContext(), "Файл не найден", Toast.LENGTH_LONG).show();
+//					}
+//				});
 			}
 		});
 	}

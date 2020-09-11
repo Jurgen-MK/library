@@ -1,6 +1,7 @@
 package kz.lib_mob_client.entity;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,9 +19,12 @@ import eu.davidea.flexibleadapter.items.IFlexible;
 import eu.davidea.viewholders.FlexibleViewHolder;
 import kz.lib_mob_client.MainActivity;
 import kz.lib_mob_client.R;
+import kz.lib_mob_client.auth_utils.TokenManager;
+import kz.lib_mob_client.controller.ServiceApi;
 import kz.lib_mob_client.fragments.WebViewDialogFragment;
 import kz.lib_mob_client.network.NetworkServiceAuth;
 import kz.lib_mob_client.network.NetworkServiceResource;
+import kz.lib_mob_client.network.ServiceAuth;
 import kz.lib_mob_client.utils.FileUtils;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -78,7 +82,12 @@ public class News extends AbstractFlexibleItem<News.ViewHolder> {
 		holder.headerTV.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(final View v) {
-				NetworkServiceResource.getInstance().getJSONApi().getNewsText("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), id).enqueue(new Callback<ResponseBody>() {
+				Context ctx = v.getContext();
+				TokenManager tokenManager = TokenManager.getInstance(ctx.getSharedPreferences("prefs", ctx.MODE_PRIVATE));
+				ServiceApi serviceApi = ServiceAuth.createService(ServiceApi.class, tokenManager);
+				Log.i("NEWS", "TEST");
+				Call<ResponseBody> call = serviceApi.getNewsText(id);
+				call.enqueue(new Callback<ResponseBody>() {
 					@Override
 					public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 						FragmentManager manager = ((MainActivity) v.getContext()).getSupportFragmentManager();
@@ -90,12 +99,31 @@ public class News extends AbstractFlexibleItem<News.ViewHolder> {
 						}
 						newFragment.show(manager, "dialog");
 					}
+
 					@Override
 					public void onFailure(Call<ResponseBody> call, Throwable t) {
 						t.printStackTrace();
 						Toast.makeText(v.getContext(), "Error", Toast.LENGTH_LONG).show();
 					}
 				});
+//				NetworkServiceResource.getInstance().getJSONApi().getNewsText("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), id).enqueue(new Callback<ResponseBody>() {
+//					@Override
+//					public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//						FragmentManager manager = ((MainActivity) v.getContext()).getSupportFragmentManager();
+//						DialogFragment newFragment = null;
+//						try {
+//							newFragment = WebViewDialogFragment.newInstance(response.body().string().toString());
+//						} catch (IOException e) {
+//							e.printStackTrace();
+//						}
+//						newFragment.show(manager, "dialog");
+//					}
+//					@Override
+//					public void onFailure(Call<ResponseBody> call, Throwable t) {
+//						t.printStackTrace();
+//						Toast.makeText(v.getContext(), "Error", Toast.LENGTH_LONG).show();
+//					}
+//				});
 			}
 		});
 	}

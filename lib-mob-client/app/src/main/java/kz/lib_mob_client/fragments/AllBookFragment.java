@@ -19,9 +19,13 @@ import java.util.List;
 import eu.davidea.flexibleadapter.FlexibleAdapter;
 import eu.davidea.flexibleadapter.items.IFlexible;
 import kz.lib_mob_client.R;
+import kz.lib_mob_client.auth_utils.TokenManager;
+import kz.lib_mob_client.controller.ServiceApi;
 import kz.lib_mob_client.entity.AllBook;
 import kz.lib_mob_client.network.NetworkServiceAuth;
 import kz.lib_mob_client.network.NetworkServiceResource;
+import kz.lib_mob_client.network.ServiceAuth;
+import retrofit2.Call;
 
 public class AllBookFragment extends Fragment {
     private static final String ARG_STATUS = "arg_status";
@@ -31,6 +35,7 @@ public class AllBookFragment extends Fragment {
     RecyclerView rv;
     List<AllBook> allBookList;
     TextView titleText;
+    TokenManager tokenManager;
 
     public AllBookFragment() {
         // Required empty public constructor
@@ -56,11 +61,17 @@ public class AllBookFragment extends Fragment {
         if (getArguments() != null) {
             status = getArguments().getInt(ARG_STATUS);
         }
+        tokenManager = TokenManager.getInstance(getContext().getSharedPreferences("prefs", getContext().MODE_PRIVATE));
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
         allBookList = new ArrayList<>();
+        ServiceApi serviceApi = ServiceAuth.createService(ServiceApi.class, tokenManager);
+        Call<List<AllBook>> call = serviceApi.getAllBookByStatus(status);
         try {
-            allBookList = NetworkServiceResource.getInstance().getJSONApi().getAllBookByStatus("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), status).execute().body();
+            allBookList = call.execute().body();
+//            allBookList = NetworkServiceResource.getInstance().getJSONApi().getAllBookByStatus("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), status).execute().body();
         } catch (IOException e) {
             e.printStackTrace();
         }
