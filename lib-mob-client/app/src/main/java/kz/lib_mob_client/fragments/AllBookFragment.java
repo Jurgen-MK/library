@@ -67,10 +67,9 @@ public class AllBookFragment extends Fragment {
         StrictMode.setThreadPolicy(policy);
 
         allBookList = new ArrayList<>();
-        ServiceApi serviceApi = ServiceAuth.createService(ServiceApi.class, tokenManager);
-        Call<List<AllBook>> call = serviceApi.getAllBookByStatus(status);
+
         try {
-            allBookList = call.execute().body();
+            allBookList = ServiceAuth.createService(ServiceApi.class, tokenManager).getAllBookByStatus(status).execute().body();
 //            allBookList = NetworkServiceResource.getInstance().getJSONApi().getAllBookByStatus("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), status).execute().body();
         } catch (IOException e) {
             e.printStackTrace();

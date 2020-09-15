@@ -100,32 +100,32 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "Введите логин и пароль!", Toast.LENGTH_SHORT).show();
             return;
         }
-        ServiceApi serviceApi = ServiceAuth.createService(ServiceApi.class);
-        Call<AccessToken> call = serviceApi.login("password", login, password);
-        call.enqueue(new Callback<AccessToken>() {
-            @Override
-            public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
-                if (response.isSuccessful()){
+        ServiceAuth.createService(ServiceApi.class).
+                login("password", login, password).
+                enqueue(new Callback<AccessToken>() {
+                    @Override
+                    public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
+                        if (response.isSuccessful()){
 
-                    tokenManager.saveToken(response.body());
-                    Log.i("LOGIN", "SUCCESSFUL! " +  tokenManager.getToken().getAccess_token());
-                    onShowSecondActivity(login);
-                } else {
-                    try {
-                        Toast.makeText(LoginActivity.this, response.errorBody().string(), Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                            tokenManager.saveToken(response.body());
+                            Log.i("LOGIN", "SUCCESSFUL! " +  tokenManager.getToken().getAccess_token());
+                            onShowSecondActivity(login);
+                        } else {
+                            try {
+                                Toast.makeText(LoginActivity.this, response.errorBody().string(), Toast.LENGTH_SHORT).show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            Log.i("LOGIN", "FAILED!");
+                        }
                     }
-                    Log.i("LOGIN", "FAILED!");
-                }
-            }
 
-            @Override
-            public void onFailure(Call<AccessToken> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.d("Error", t.getMessage());
-            }
-        });
+                    @Override
+                    public void onFailure(Call<AccessToken> call, Throwable t) {
+                        Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                Log.d("Error", t.getMessage());
+                    }
+                });
 //        OAuth2Client.Builder builder = new OAuth2Client.Builder(CLIENT_ID, CLIENT_SECRET, URL_AUTH)
 //                .grantType("password")
 //                .username(login)
@@ -200,27 +200,27 @@ public class LoginActivity extends AppCompatActivity {
         UserInfo userInfo = new UserInfo(0, login, etName.getText().toString().trim(), etSurname.getText().toString().trim(), etPatr.getText().toString().trim(), etBDate.getText().toString(),
                 "", 0, 0, 0, 0, 0, 0, phone,
                 email, "");
-        ServiceApi serviceApi = ServiceAuth.createServiceRegistration(ServiceApi.class);
-        Call<ResponseBody> call = serviceApi.doRegistration(new UserCreationRequest(user, userInfo));
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                String message = null;
-                try {
-                    message = response.body().string();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
-                clearEditTexts();
-                setupView(false);
-            }
+        ServiceAuth.createServiceRegistration(ServiceApi.class).
+                doRegistration(new UserCreationRequest(user, userInfo)).
+                enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        String message = null;
+                        try {
+                            message = response.body().string();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                        clearEditTexts();
+                        setupView(false);
+                    }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Ошибка при регистрации! " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(LoginActivity.this, "Ошибка при регистрации! " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 //        NetworkServiceAuth.
 //            getInstance().
 //            getJSONAuthApi().

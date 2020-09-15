@@ -84,28 +84,27 @@ public class News extends AbstractFlexibleItem<News.ViewHolder> {
 			public void onClick(final View v) {
 				Context ctx = v.getContext();
 				TokenManager tokenManager = TokenManager.getInstance(ctx.getSharedPreferences("prefs", ctx.MODE_PRIVATE));
-				ServiceApi serviceApi = ServiceAuth.createService(ServiceApi.class, tokenManager);
-				Log.i("NEWS", "TEST");
-				Call<ResponseBody> call = serviceApi.getNewsText(id);
-				call.enqueue(new Callback<ResponseBody>() {
-					@Override
-					public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-						FragmentManager manager = ((MainActivity) v.getContext()).getSupportFragmentManager();
-						DialogFragment newFragment = null;
-						try {
-							newFragment = WebViewDialogFragment.newInstance(response.body().string().toString());
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						newFragment.show(manager, "dialog");
-					}
+				ServiceAuth.createService(ServiceApi.class, tokenManager).
+						getNewsText(id).
+						enqueue(new Callback<ResponseBody>() {
+							@Override
+							public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+								FragmentManager manager = ((MainActivity) v.getContext()).getSupportFragmentManager();
+								DialogFragment newFragment = null;
+								try {
+									newFragment = WebViewDialogFragment.newInstance(response.body().string().toString());
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+								newFragment.show(manager, "dialog");
+							}
 
-					@Override
-					public void onFailure(Call<ResponseBody> call, Throwable t) {
-						t.printStackTrace();
-						Toast.makeText(v.getContext(), "Error", Toast.LENGTH_LONG).show();
-					}
-				});
+							@Override
+							public void onFailure(Call<ResponseBody> call, Throwable t) {
+								t.printStackTrace();
+								Toast.makeText(v.getContext(), "Error", Toast.LENGTH_LONG).show();
+							}
+						});
 //				NetworkServiceResource.getInstance().getJSONApi().getNewsText("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), id).enqueue(new Callback<ResponseBody>() {
 //					@Override
 //					public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

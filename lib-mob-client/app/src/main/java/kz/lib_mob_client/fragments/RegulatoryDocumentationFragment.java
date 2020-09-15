@@ -73,10 +73,8 @@ public class RegulatoryDocumentationFragment extends Fragment {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         regDocList = new ArrayList<>();
-        ServiceApi serviceApi = ServiceAuth.createService(ServiceApi.class, tokenManager);
-        Call<List<RegulatoryDocumentation>> call = serviceApi.getRegDocList(category);
         try {
-            regDocList = call.execute().body();
+            regDocList = ServiceAuth.createService(ServiceApi.class, tokenManager).getRegDocList(category).execute().body();
 //            regDocList = NetworkServiceResource.getInstance().getJSONApi().getRegDocList("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), category).execute().body();
             Log.i("huitag", "Size - " + regDocList.size());
         } catch (IOException e) {

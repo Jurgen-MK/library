@@ -87,27 +87,27 @@ public class SAFUtils {
     }
 
     public static void downloadFile(Uri uri, String dateFrom, String dateTo){
-        ServiceApi serviceApi = ServiceAuth.createService(ServiceApi.class, tokenManager);
-        Call<ResponseBody> call = serviceApi.getReport(new ReportRequest("InnoReport", dateFrom, dateTo));
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    if (writeFileContent(uri, response.body().bytes())){
-                        Log.i("Загрузка завершена!", "Загрузка завершена!");
-                        Toast.makeText(act, "Загрузка завершена!", Toast.LENGTH_SHORT).show();
+        ServiceAuth.createService(ServiceApi.class, tokenManager).
+                getReport(new ReportRequest("InnoReport", dateFrom, dateTo)).
+                enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        try {
+                            if (writeFileContent(uri, response.body().bytes())){
+                                Log.i("Загрузка завершена!", "Загрузка завершена!");
+                                Toast.makeText(act, "Загрузка завершена!", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.i("Ошибка при загрузке!", "Ошибка при загрузке!");
-                Toast.makeText(act, "Ошибка при загрузке!", Toast.LENGTH_SHORT);
-            }
-        });
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.i("Ошибка при загрузке!", "Ошибка при загрузке!");
+                        Toast.makeText(act, "Ошибка при загрузке!", Toast.LENGTH_SHORT);
+                    }
+                });
 //        NetworkServiceResource.
 //                getInstance().
 //                getJSONApi().

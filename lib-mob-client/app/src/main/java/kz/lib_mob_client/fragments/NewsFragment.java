@@ -81,11 +81,9 @@ public class NewsFragment extends Fragment {
         StrictMode.setThreadPolicy(policy);
 
         listNews = new ArrayList<>();
-        ServiceApi serviceApi = ServiceAuth.createService(ServiceApi.class, tokenManager);
-        Call<List<News>> callRes = serviceApi.getNews();
 
         try {
-            listNews = callRes.execute().body();
+            listNews = ServiceAuth.createService(ServiceApi.class, tokenManager).getNews().execute().body();
 //            listNews = NetworkService.getInstance().getJSONApi().getNewsList("Bearer " + NetworkServiceAuth.getInstance().getAccessToken()).execute().body();
         } catch (IOException e) {
             e.printStackTrace();

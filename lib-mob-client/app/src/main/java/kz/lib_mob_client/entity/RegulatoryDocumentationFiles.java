@@ -123,23 +123,23 @@ public class RegulatoryDocumentationFiles  extends AbstractFlexibleItem<Regulato
 			public void onClick(final View v) {
 				Context ctx = v.getContext();
 				TokenManager tokenManager = TokenManager.getInstance(ctx.getSharedPreferences("prefs", ctx.MODE_PRIVATE));
-				ServiceApi serviceApi = ServiceAuth.createService(ServiceApi.class, tokenManager);
-				Call<ResponseBody> call = serviceApi.getFile(path, name);
-				call.enqueue(new Callback<ResponseBody>() {
-					@Override
-					public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-						if (FileUtils.writeResponseBodyToDisk(v.getContext(), response.body(), name)) {
-							Toast.makeText(v.getContext(), name+" сохранен", Toast.LENGTH_SHORT).show();
-						} else {
-							Toast.makeText(v.getContext(), "Ошибка сохранения", Toast.LENGTH_SHORT).show();
-						}
-					}
+				ServiceAuth.createService(ServiceApi.class, tokenManager).
+						getFile(path, name).
+						enqueue(new Callback<ResponseBody>() {
+							@Override
+							public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+								if (FileUtils.writeResponseBodyToDisk(v.getContext(), response.body(), name)) {
+									Toast.makeText(v.getContext(), name+" сохранен", Toast.LENGTH_SHORT).show();
+								} else {
+									Toast.makeText(v.getContext(), "Ошибка сохранения", Toast.LENGTH_SHORT).show();
+								}
+							}
 
-					@Override
-					public void onFailure(Call<ResponseBody> call, Throwable t) {
-						Toast.makeText(v.getContext(), "Файл не найден", Toast.LENGTH_LONG).show();
-					}
-				});
+							@Override
+							public void onFailure(Call<ResponseBody> call, Throwable t) {
+								Toast.makeText(v.getContext(), "Файл не найден", Toast.LENGTH_LONG).show();
+							}
+						});
 //				NetworkServiceResource.getInstance().getJSONApi().getFile("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), path, name).enqueue(new Callback<ResponseBody>() {
 //					@Override
 //					public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

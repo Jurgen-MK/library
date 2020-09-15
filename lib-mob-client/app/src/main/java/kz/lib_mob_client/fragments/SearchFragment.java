@@ -124,10 +124,9 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
             tvSearch.setText("video "+ (spCategory.getSelectedItemPosition()+1));
             searchRequest.setCatalogMode("video");
         }
-        ServiceApi serviceApi = ServiceAuth.createService(ServiceApi.class, tokenManager);
-        Call<List<SearchRespond>> call = serviceApi.searchByCategory(searchRequest);
+
         try {
-            listSearchRespond = call.execute().body();
+            listSearchRespond = ServiceAuth.createService(ServiceApi.class, tokenManager).searchByCategory(searchRequest).execute().body();
 //            listSearchRespond = NetworkServiceResource.getInstance().getJSONApi().searchByCategory("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), searchRequest).execute().body();
             RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
             List<IFlexible> list = new ArrayList<>();
