@@ -31,9 +31,10 @@ public class UserInfo {
 	private String email;
 	private String education;
 
-	protected UserInfo() {
-	}
-	
+	/*
+	 * protected UserInfo() { }
+	 */
+	public UserInfo() {}
 	
 
 	public UserInfo(int id, String username, String name, String surname, String patronymic, Date birthday,

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    
+  </head>
+  <body>
+  	
+  	<div class="container-fluid">
+  		<form action="/user/message" method="post">
+			<div class="container">
+				<div class="header mt-3">
+					<h5 class="title">Регистрация ИС-ЭЦБ</h5>
+				</div>
+				<hr>
+				<div class="row justify-content-center">
+					<div class="col">
+						<p class="text-danger" th:text="*{message}" />
+						
+						<div class="form-group">
+							<label>Логин</label> 
+							<input 
+								type="text" name="username" class="form-control" 
+								placeholder="Логин" required minlength="3" maxlength="256"
+								th:value="*{username}"> 
+							<small id="usernameHelp"
+								class="form-text text-muted"> Длина логина должна быть
+								не менее 3-х символов 
+							</small>
+						</div>
+
+						<div class="form-group">
+							<label>Пароль</label> 
+							<input
+								type="password" name="password" class="form-control"
+								placeholder="Пароль" required minlength="3" maxlength="256"> 
+							<small
+								id="passHelp" class="form-text text-muted"> Длина пароля
+								должна быть не менее 3-х символов 
+							</small>
+						</div>
+						
+						<div class="form-group">
+							<label>Подтвердить пароль</label> 
+							<input
+								type="password" name="confirmPass" class="form-control"
+								placeholder="Подтвердите пароль" required minlength="3" maxlength="256"> 
+							<small
+								id="confirmPassHelp" class="form-text text-muted"> Пароли должны совпадать 
+							</small>
+						</div>
+						
+						<p class="text-danger" th:text="*{messagePass}" />
+						
+						<div class="form-group">
+							<label>Почта</label> 
+							<input
+								type="email" name="email" class="form-control"
+								placeholder="Email" required minlength="10" maxlength="75"
+								th:value="*{email}">
+							<small id="emailHelp" class="form-text text-muted"> Укажите свою почту 
+							</small>
+						</div>
+
+						<div class="form-group">
+							<label>Секретный вопрос</label>
+							<select name="secretquestion" class="form-control" 
+								placeholder="secretQuestion" required th:value="*{secretquestion}">
+								<option value="" selected disabled hidden>Укажите
+									Секретный вопрос</option>
+								<option value="Какое прозвище было у вас в детстве?">Какое
+									прозвище было у вас в детстве?</option>
+								<option
+									value="В каком городе вы познакомились со своей второй половиной?">В
+									каком городе вы познакомились со своей второй половиной?</option>
+								<option value="Как звали вашего лучшего друга детства?">Как
+									звали вашего лучшего друга детства?</option>
+								<option value="На какой улице вы жили в третьем классе?">На
+									какой улице вы жили в третьем классе?</option>
+								<option
+									value="Какой месяц и год рождения вашего самого старшего родственника? (напр. Январь 1900)">Какой
+									месяц и год рождения вашего самого старшего родственника?
+									(напр. Январь 1900)</option>
+								<option value="Какое отчество вашего среднего ребенка?">Какое
+									отчество вашего среднего ребенка?</option>
+								<option
+									value="Какое отчество вашего самого старого родственника?">Какое
+									отчество вашего самого старого родственника?</option>
+								<option value="Какую школу вы посещали в шестом классе?">Какую
+									школу вы посещали в шестом классе?</option>
+								<option
+									value="Какой у вас в детстве был номер телефона? (напр. (495) 123-4567)">Какой
+									у вас в детстве был номер телефона? (напр. (495) 123-4567)</option>
+								<option
+									value="Какое имя и фамилия у вашего старшего двоюродного брата/сестры?">Какое
+									имя и фамилия у вашего старшего двоюродного брата/сестры?</option>
+								<option value="Как звали вашу первую плюшевую игрушку?">Как
+									звали вашу первую плюшевую игрушку?</option>
+								<option value="В каком месте встретились ваши родители?">В
+									каком месте встретились ваши родители?</option>
+								<option value="Где вы в первый раз поцеловались?">Где
+									вы в первый раз поцеловались?</option>
+								<option
+									value="Как звали мальчика/девочку которого вы поцеловали?">Как
+									звали мальчика/девочку которого вы поцеловали?</option>
+								<option value="Как звали вашего учителя в третьем классе?">Как
+									звали вашего учителя в третьем классе?</option>
+								<option value="В каком городе живет ваш ближайший родственник?">В
+									каком городе живет ваш ближайший родственник?</option>
+								<option
+									value="Какой месяц и год рождения вашего старшего брата? (напр. Январь 1900)">Какой
+									месяц и год рождения вашего старшего брата? (напр. Январь 1900)</option>
+								<option value="Какая девичья фамилия вашей бабушки?">Какая
+									девичья фамилия вашей бабушки?</option>
+								<option value="В каком городе была ваша первая работа?">В
+									каком городе была ваша первая работа?</option>
+								<option value="В каком месте была ваша свадебная церемония?">В
+									каком месте была ваша свадебная церемония?</option>
+								<option
+									value="Как называлось учебное заведение в которое вы поступили, но не стали учиться?">Как
+									называлось учебное заведение в которое вы поступили, но не
+									стали учиться?</option>
+								<option
+									value="Где вы были когда услышали о трагедии девятого сентября?">Где
+									вы были когда услышали о трагедии девятого сентября?</option>
+							</select>
+						</div>
+						
+						<div class="form-group">
+							<label>Ответ на секретный вопрос</label> 
+							<input 
+								type="text" name="answerQuestion" class="form-control" 
+								placeholder="Введите ответ на секретный вопрос"
+								required minlength="1" maxlength="50" 
+								th:value="*{answerQuestion}"> 
+							<small id="answerHelp"
+								class="form-text text-muted"> Длина ответа должна быть
+								не менее 1-го символа 
+							</small>
+						</div>
+						
+						<div class="form-group">
+							<label>Фамилия</label> 
+							<input 
+							type="text" name="surname" class="form-control" 
+								placeholder="Укажите фамилию" required minlength="2" maxlength="75" 
+								th:value="*{surname}"> 							
+						</div>
+						
+						<div class="form-group">
+							<label>Имя</label> 
+							<input 
+								type="text" name="name" class="form-control" 
+								placeholder="Укажите имя" required minlength="2" maxlength="75" 
+								th:value="*{name}"> 							
+						</div>
+						
+						<div class="form-group">
+							<label>Отчество</label> 
+							<input 
+								type="text" name="patronymic" class="form-control" 
+								placeholder="Укажите отчество" minlength="2" maxlength="75" 
+								th:value="*{patronymic}"> 						
+						</div>
+						
+						<div class="form-group">
+							<label>Дата рождения</label> 
+							<input 
+								type="date" name="birthday" class="form-control" 
+								placeholder="Укажите дату рождения" required 
+								th:value="*{birthday}"> 							
+						</div>
+						
+						<div class="form-group">
+							<label>Номер телефона</label> 
+							<input 
+								type="text" name="phone" class="form-control" 
+								placeholder="Укажите номер телефона"
+								required minlength="11" maxlength="12" 
+								th:value="*{phone}"> 							
+						</div>	
+						
+						<div class="form-group">
+							<label>Образование</label> 
+							<select name="education" class="form-control" 
+								placeholder="education" required th:value="*{education}">
+								<option value="" selected disabled hidden>
+									Укажите	образование
+								</option>
+								<option 
+									value="Высшее"> Высшее
+								</option>
+								<option
+									value="Средне-техническое">	Средне-техническое
+								</option>
+								<option
+									value="Среднее"> Среднее
+								</option>
+							</select> 							
+						</div>
+						
+						<div class="form-group">
+							<label>Адрес</label> 
+							<input 
+								type="text" name="address" class="form-control" 
+								placeholder="Укажите адрес"
+								required minlength="5" maxlength="75" th:value="*{address}"> 							
+						</div> 										
+
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary mb-3">Зарегистрироваться</button>
+			</div>		
+		</form>
+  	</div>
+	<script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>  

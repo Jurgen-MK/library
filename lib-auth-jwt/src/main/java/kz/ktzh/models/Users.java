@@ -24,9 +24,12 @@ public class Users {
 	
 	private byte enabled;
 
-	protected Users() {
-	}
+	/*protected Users() {
+	}*/
 
+	public Users() {		
+	}
+	
 	/*
 	 * public Users(String username, String password, byte enabled) { this.username
 	 * = username; this.password = password; this.enabled = enabled; }
