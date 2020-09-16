@@ -20,9 +20,13 @@ import java.util.List;
 import eu.davidea.flexibleadapter.FlexibleAdapter;
 import eu.davidea.flexibleadapter.items.IFlexible;
 import kz.lib_mob_client.R;
+import kz.lib_mob_client.auth_utils.TokenManager;
+import kz.lib_mob_client.controller.ServiceApi;
 import kz.lib_mob_client.entity.RegulatoryDocumentation;
 import kz.lib_mob_client.network.NetworkServiceAuth;
 import kz.lib_mob_client.network.NetworkServiceResource;
+import kz.lib_mob_client.network.ServiceAuth;
+import retrofit2.Call;
 
 
 /**
@@ -44,6 +48,7 @@ public class RegulatoryDocumentationFragment extends Fragment {
 
     RecyclerView rv;
     TextView titleText;
+    TokenManager tokenManager;
 
 
     public RegulatoryDocumentationFragment() {
@@ -62,11 +67,15 @@ public class RegulatoryDocumentationFragment extends Fragment {
             category = getArguments().getInt(ARG_CATEGORY);
         }
         Log.i("huitatusargument", String.valueOf(category));
+
+        tokenManager = TokenManager.getInstance(getContext().getSharedPreferences("prefs", getContext().MODE_PRIVATE));
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         regDocList = new ArrayList<>();
         try {
-            regDocList = NetworkServiceResource.getInstance().getJSONApi().getRegDocList("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), category).execute().body();
+            regDocList = ServiceAuth.createService(ServiceApi.class, tokenManager).getRegDocList(category).execute().body();
+//            regDocList = NetworkServiceResource.getInstance().getJSONApi().getRegDocList("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), category).execute().body();
             Log.i("huitag", "Size - " + regDocList.size());
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,26 +1,44 @@
 package kz.lib_mob_client;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 import com.nightonke.boommenu.BoomButtons.HamButton;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.Util;
 
 import kz.lib_mob_client.fragments.AllBookFragment;
+import kz.lib_mob_client.fragments.InnovationReportFragment;
 import kz.lib_mob_client.fragments.LearningMenuFragment;
 import kz.lib_mob_client.fragments.NewsFragment;
 import kz.lib_mob_client.fragments.RegulatoryMenuFragment;
 import kz.lib_mob_client.fragments.RegulatoryDocumentationFragment;
 import kz.lib_mob_client.fragments.SearchFragment;
 import kz.lib_mob_client.fragments.TechnicalMenuFragment;
+import kz.lib_mob_client.utils.SAFUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
     AllBookFragment abf;
     SearchFragment sf;
     NewsFragment nf;
+    InnovationReportFragment irf;
+    private int SETTINGS_REQUEST_CODE = 1;
+    private long backPressedTime;
+    private Toast backToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
         learfrag = new LearningMenuFragment();
         sf = new SearchFragment();
         nf = new NewsFragment();
+        irf = new InnovationReportFragment();
         BoomMenuButton bmb = findViewById(R.id.bmb);
+
         bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.filesfolders)
                 .normalTextRes(R.string.MenuItem1)
@@ -49,9 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
                 .listener(new OnBMClickListener() {
                     @Override
-                    public void onBoomButtonClick(int index) {
-                        displayFragment(sf);
-                    }
+                    public void onBoomButtonClick(int index) {  displayFragment(sf); }
                 }));
         bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.pencil)
@@ -64,7 +86,19 @@ public class MainActivity extends AppCompatActivity {
                         displayFragment(nf);
                     }
                 }));
-       /* bmb.addBuilder(new HamButton.Builder()
+        bmb.addBuilder(new HamButton.Builder()
+                .normalImageRes(R.drawable.pencil)
+                .normalTextRes(R.string.MenuItem6)
+                .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
+                .normalColor(Color.parseColor("#FF82B1FF"))
+                .listener(new OnBMClickListener() {
+                    @Override
+                    public void onBoomButtonClick(int index) {
+                        displayFragment(irf);
+                    }
+                }));
+
+        /*bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.thinking)
                 .normalTextRes(R.string.MenuItem3)
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
@@ -175,10 +209,90 @@ public class MainActivity extends AppCompatActivity {
         displayFragment(rdf);
     }*/
 
+    /*@Override
+    protected void onResume() {
+        super.onResume();
+        Dexter.withActivity(MainActivity.this).
+                withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).
+                withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        Toast.makeText(MainActivity.this, "Картинка выбрана!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        showSettingsDialog();
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).onSameThread().check();
+    }*/
+
     private void displayFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frgmCont, fragment);
+//        String frName = fragment.getClass().getCanonicalName();
+//        Log.i("Fragment Name ", frName);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
+    private void showSettingsDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Нужно разрешение");
+        builder.setMessage("Этому приложению требуется разрешение для доступа файловой системе. Вы можете дать разрешение в настройках");
+        builder.setPositiveButton("НАСТРОЙКИ", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                openSettings();
+            }
+        });
+        builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+
+    }
+
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", "kz.lib_mob_client", null);
+        intent.setData(uri);
+        startActivityForResult(intent, SETTINGS_REQUEST_CODE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        } else {
+            if (backPressedTime + 2000 > System.currentTimeMillis()){
+                backToast.cancel();
+                super.onBackPressed();
+                return;
+            } else {
+                backToast = Toast.makeText(this, "Нажмите еще раз, чтобы выйти", Toast.LENGTH_SHORT);
+                backToast.show();
+            }
+            backPressedTime = System.currentTimeMillis();
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 }

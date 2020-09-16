@@ -1,5 +1,6 @@
 package kz.lib_mob_client.fragments;
 
+import android.media.session.MediaSession;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,10 +27,14 @@ import java.util.stream.IntStream;
 import eu.davidea.flexibleadapter.FlexibleAdapter;
 import eu.davidea.flexibleadapter.items.IFlexible;
 import kz.lib_mob_client.R;
+import kz.lib_mob_client.auth_utils.TokenManager;
+import kz.lib_mob_client.controller.ServiceApi;
 import kz.lib_mob_client.entity.SearchRequest;
 import kz.lib_mob_client.entity.SearchRespond;
 import kz.lib_mob_client.network.NetworkServiceAuth;
 import kz.lib_mob_client.network.NetworkServiceResource;
+import kz.lib_mob_client.network.ServiceAuth;
+import retrofit2.Call;
 
 
 public class SearchFragment extends Fragment implements View.OnClickListener {
@@ -41,11 +48,12 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
 
     Spinner spCategory;
     Button searchButton;
+    ImageButton downloadButton;
     TextView tvSearch;
     EditText etSearchString;
     List<SearchRespond> listSearchRespond;
     RecyclerView rvRespond;
-
+    TokenManager tokenManager;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -68,6 +76,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        tokenManager = TokenManager.getInstance(getActivity().getSharedPreferences("prefs", getContext().MODE_PRIVATE));
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }
@@ -115,8 +124,10 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
             tvSearch.setText("video "+ (spCategory.getSelectedItemPosition()+1));
             searchRequest.setCatalogMode("video");
         }
+
         try {
-            listSearchRespond = NetworkServiceResource.getInstance().getJSONApi().searchByCategory("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), searchRequest).execute().body();
+            listSearchRespond = ServiceAuth.createService(ServiceApi.class, tokenManager).searchByCategory(searchRequest).execute().body();
+//            listSearchRespond = NetworkServiceResource.getInstance().getJSONApi().searchByCategory("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), searchRequest).execute().body();
             RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
             List<IFlexible> list = new ArrayList<>();
             list.addAll(listSearchRespond);

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.InnovationReportFragment">
+
+    <TextView
+        android:id="@+id/tvReportTitle"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="104dp"
+        android:gravity="center"
+        android:text="Отчет по рационализаторам"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/rvInnovationReport"
+        android:layout_width="411dp"
+        android:layout_height="0dp"
+        android:background="@drawable/border3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvReportTitle"
+        app:cardUseCompatPadding="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <EditText
+                    android:id="@+id/etdFrom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="date"
+                    android:hint="Введите дату 'от'"/>
+
+                <EditText
+                    android:id="@+id/etdTo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="date"
+                    android:hint="Введите дату 'до'"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnReport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Отчет" />
+        </LinearLayout>
+
+        <!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/fieldHeader1"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:background="@drawable/border"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="№ п/п"-->
+<!--                    android:textColor="#000000" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/fieldValue1"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:background="@drawable/bg_white"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text=""-->
+<!--                    android:textColor="#000000" />-->
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/fieldHeader2"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:background="@drawable/border"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="НТИ НЖС"-->
+<!--                    android:textColor="#000000" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/fieldValue2"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:background="@drawable/bg_white"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text=""-->
+<!--                    android:textColor="#000000" />-->
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/fieldHeader3"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:background="@drawable/border"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Курирующие подразделения"-->
+<!--                    android:textColor="#000000" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/fieldValue3"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:background="@drawable/bg_white"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text=""-->
+<!--                    android:textColor="#000000" />-->
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/fieldHeader4"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:background="@drawable/border"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Филиал"-->
+<!--                    android:textColor="#000000" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/fieldValue4"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:background="@drawable/bg_white"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text=""-->
+<!--                    android:textColor="#000000" />-->
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/fieldHeader5"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:background="@drawable/border"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="План"-->
+<!--                    android:textColor="#000000" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/fieldValue5"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:background="@drawable/bg_white"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text=""-->
+<!--                    android:textColor="#000000" />-->
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/fieldHeader6"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:background="@drawable/border"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Факт"-->
+<!--                    android:textColor="#000000" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/fieldValue6"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:background="@drawable/bg_white"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text=""-->
+<!--                    android:textColor="#000000" />-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+<!--                <TextView-->
+<!--                    android:id="@+id/fieldHeader8"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:background="@drawable/border"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Скачать отчет"-->
+<!--                    android:textColor="#000000" />-->
+<!--                <ImageButton-->
+<!--                    android:id="@+id/downloadButton"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:background="@drawable/border"-->
+<!--                    bind:srcCompat="@drawable/ic_file_download_black_24dp">-->
+<!--                </ImageButton>-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+    </androidx.cardview.widget.CardView>
+
+    <!--<androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvInnovationReport"
+        android:layout_width="411dp"
+        android:layout_height="0dp"
+        android:background="@drawable/border3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvReportTitle"
+        tools:listitem="@layout/item_innovation_report" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
