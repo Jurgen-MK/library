@@ -26,7 +26,9 @@ public class SearchDAO {
 				"union " + 
 				"SELECT namedoc as name, filepath,filename FROM npdNtd " + 
 				"union " + 
-				"SELECT docName as name, filepath,filename FROM PeriodicalsCatalog ";
+				"SELECT docName as name, filepath,filename FROM PeriodicalsCatalog " +
+				"union " +
+				"SELECT docName as name, filepath, filename FROM BooksInstructions ";
 		List<SearchRespond> srList = jdbcTemplate.query(
                 sql,
                 new SearchRespondRowMapper());
@@ -42,7 +44,9 @@ public class SearchDAO {
 				+ "union "
 				+ "SELECT namedoc as name, filepath,filename FROM npdNtd where namedoc = :name "
 				+ "union "
-				+ "SELECT docName as name, filepath,filename FROM PeriodicalsCatalog where docName = :name";
+				+ "SELECT docName as name, filepath,filename FROM PeriodicalsCatalog where docName = :name "
+				+ "union "
+				+ "SELECT docName as name, filepath, filename FROM BooksInstructions where docName like :name ";
 		List<SearchRespond> srList = jdbcTemplate.query(
                 sql,
                 new MapSqlParameterSource()
@@ -100,6 +104,17 @@ public class SearchDAO {
 		                sql,
 		                new MapSqlParameterSource()
 		                .addValue("name", "%"+name+"%"),
+		                new SearchRespondRowMapper());
+				return srList;
+	}
+	
+	public List<SearchRespond> searchInBooksInstructionsCatalog(String category, String name){
+		String sql = "SELECT docName as name, filepath, filename FROM BooksInstructionsCatalog where docName like :name and catalogType = :catalogtype";
+				List<SearchRespond> srList = jdbcTemplate.query(
+		                sql,
+		                new MapSqlParameterSource()
+		                .addValue("name", "%"+name+"%")
+		                .addValue("catalogtype", category),
 		                new SearchRespondRowMapper());
 				return srList;
 	}

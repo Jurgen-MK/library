@@ -105,27 +105,46 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         SearchRequest searchRequest = new SearchRequest();
         //spCategory.getSelectedItemPosition()
-        tvSearch.setText("позиция " +  (spCategory.getSelectedItemPosition()+1));
-        searchRequest.setCatalogType(String.valueOf(spCategory.getSelectedItemPosition()+1));
+        tvSearch.setText("позиция " + (spCategory.getSelectedItemPosition() + 1));
         searchRequest.setSearchString(etSearchString.getText().toString());
-        if(IntStream.rangeClosed(1,13).boxed().collect(Collectors.toList()).contains(spCategory.getSelectedItemPosition()+1)) {
-            tvSearch.setText("npdntd "+ (spCategory.getSelectedItemPosition()+1));
+        if (IntStream.rangeClosed(1, 13).boxed().collect(Collectors.toList()).contains(spCategory.getSelectedItemPosition() + 1)) {
             searchRequest.setCatalogMode("npdntd");
+            searchRequest.setCatalogType(String.valueOf(spCategory.getSelectedItemPosition() + 1));
         }
-        if(IntStream.rangeClosed(14,16).boxed().collect(Collectors.toList()).contains(spCategory.getSelectedItemPosition()+1)) {
-            tvSearch.setText("allbook "+ (spCategory.getSelectedItemPosition()+1));
+        if (IntStream.rangeClosed(14, 16).boxed().collect(Collectors.toList()).contains(spCategory.getSelectedItemPosition() + 1)) {
             searchRequest.setCatalogMode("allbook");
+            switch (spCategory.getSelectedItemPosition() + 1) {
+                case 14:
+                    searchRequest.setCatalogType("1");
+                    break;
+                case 15:
+                    searchRequest.setCatalogType("2");
+                    break;
+                case 16:
+                    searchRequest.setCatalogType("3");
+                    break;
+            }
         }
-        if((spCategory.getSelectedItemPosition()+1)==17) {
-            tvSearch.setText("article "+ (spCategory.getSelectedItemPosition()+1));
+        if ((spCategory.getSelectedItemPosition() + 1) == 17) {
             searchRequest.setCatalogMode("article");
         }
-        if((spCategory.getSelectedItemPosition()+1)==18) {
-            tvSearch.setText("video "+ (spCategory.getSelectedItemPosition()+1));
+        if ((spCategory.getSelectedItemPosition() + 1) == 18) {
             searchRequest.setCatalogMode("video");
+        }
+        if (IntStream.rangeClosed(19, 20).boxed().collect(Collectors.toList()).contains(spCategory.getSelectedItemPosition() + 1)) {
+            searchRequest.setCatalogMode("booksinscalscatalog");
+            switch (spCategory.getSelectedItemPosition() + 1) {
+                case 19:
+                    searchRequest.setCatalogType("14");
+                    break;
+                case 20:
+                    searchRequest.setCatalogType("15");
+                    break;
+            }
         }
 
         try {
+
             listSearchRespond = ServiceAuth.createService(ServiceApi.class, tokenManager).searchByCategory(searchRequest).execute().body();
 //            listSearchRespond = NetworkServiceResource.getInstance().getJSONApi().searchByCategory("Bearer " + NetworkServiceAuth.getInstance().getAccessToken(), searchRequest).execute().body();
             RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());

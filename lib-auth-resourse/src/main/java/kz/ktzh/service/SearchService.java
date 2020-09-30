@@ -34,6 +34,9 @@ public class SearchService {
 		case "periodicalscatalog":
 			srList = searchDao.searchInPeriodicalsCatalog(searchRequest.getSearchString());
 			break;
+		case "booksinscalscatalog":
+			srList = searchDao.searchInBooksInstructionsCatalog(searchRequest.getCatalogType(), searchRequest.getSearchString());
+			break;
 		}
 		return srList;
 	}
