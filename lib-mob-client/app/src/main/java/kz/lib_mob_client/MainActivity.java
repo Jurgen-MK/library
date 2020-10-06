@@ -31,6 +31,7 @@ import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.Util;
 
 import kz.lib_mob_client.fragments.AllBookFragment;
+import kz.lib_mob_client.fragments.ExhibitionFragment;
 import kz.lib_mob_client.fragments.InnovationReportFragment;
 import kz.lib_mob_client.fragments.LearningMenuFragment;
 import kz.lib_mob_client.fragments.NewsFragment;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     SearchFragment sf;
     NewsFragment nf;
     InnovationReportFragment irf;
+    ExhibitionFragment exf;
     private int SETTINGS_REQUEST_CODE = 1;
     private long backPressedTime;
     private Toast backToast;
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         sf = new SearchFragment();
         nf = new NewsFragment();
         irf = new InnovationReportFragment();
+        exf = new ExhibitionFragment();
         BoomMenuButton bmb = findViewById(R.id.bmb);
 
         bmb.addBuilder(new HamButton.Builder()
@@ -95,6 +98,17 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onBoomButtonClick(int index) {
                         displayFragment(irf);
+                    }
+                }));
+        bmb.addBuilder(new HamButton.Builder()
+                .normalImageRes(R.drawable.pencil)
+                .normalTextRes(R.string.MenuItem7)
+                .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
+                .normalColor(Color.parseColor("#FF82B1FF"))
+                .listener(new OnBMClickListener() {
+                    @Override
+                    public void onBoomButtonClick(int index) {
+                        displayFragment(exf);
                     }
                 }));
 

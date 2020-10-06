@@ -41,5 +41,17 @@ public class FileController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + path.getFileName().toString())
 				.contentType(mediaType).contentLength(data.length).body(resource);
 	}
+	
+	@GetMapping("/getfilebyfullpath")
+	public ResponseEntity<ByteArrayResource> getFileByFullPath(@RequestParam String fullpath)
+			throws IOException {
+		MediaType mediaType = MediaTypeUtils.getMediaTypeForFileName(this.servletContext, fullpath);		
+		Path path = Paths.get(fullpath);
+		byte[] data = Files.readAllBytes(path);
+		ByteArrayResource resource = new ByteArrayResource(data);
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + path.getFileName().toString())
+				.contentType(mediaType).contentLength(data.length).body(resource);
+	}
 
 }
