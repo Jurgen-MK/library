@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/imgTv"
-        android:layout_width="match_parent"
-        android:layout_height="97dp"
-        android:background="#FFFFFF"
-        android:gravity="center"
-        android:text="Текст"
-        android:textColor="#000000"
-        android:textSize="14sp" />
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/eximage"
         android:layout_width="match_parent"
-        android:layout_height="398dp" />
-</LinearLayout>
+        android:scaleType="fitXY"
+        android:layout_height="350dp" />
+</FrameLayout>

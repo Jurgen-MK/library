@@ -62,7 +62,6 @@ public class ExhibitionImage extends AbstractFlexibleItem<ExhibitionImage.ViewHo
 
     @Override
     public void bindViewHolder(FlexibleAdapter<IFlexible> adapter, ExhibitionImage.ViewHolder holder, int position, List<Object> payloads) {
-        holder.imgTv.setText(link);
         Context ctx = holder.eximg.getContext();
         TokenManager tokenManager = TokenManager.getInstance(ctx.getSharedPreferences("prefs", ctx.MODE_PRIVATE));
         GlideUrl glideUrl = new GlideUrl(ServiceAuth.RES_API_BASE_URL+"/files/getfilebyfullpath?fullpath="+link,
@@ -70,18 +69,16 @@ public class ExhibitionImage extends AbstractFlexibleItem<ExhibitionImage.ViewHo
                         .addHeader("Authorization", "Bearer " + tokenManager.getToken().getAccess_token())
                         .build());
         Glide.with(ctx)
-                .load(glideUrl).placeholder(R.mipmap.ic_launcher).error(R.drawable.arrow)
+                .load(glideUrl).placeholder(R.drawable.arrow).error(R.drawable.arrow)
                 .into(holder.eximg);
     }
 
 
 
     public class ViewHolder extends FlexibleViewHolder {
-        public TextView imgTv;
         public ImageView eximg;
         public ViewHolder(View view, FlexibleAdapter adapter) {
             super(view, adapter);
-            imgTv = view.findViewById(R.id.imgTv);
             eximg = view.findViewById(R.id.eximage);
         }
     }

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:scrollbarStyle="insideInset"
-    android:background="#577883"
+
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".LoginActivity">
 
