@@ -8,6 +8,7 @@
     <string name="MenuItem5">Издательско-музейная деятельность</string>
     <string name="MenuItem6">Отчет</string>
     <string name="MenuItem7">Выставки</string>
+    <string name="MenuItem8">Музеи</string>
 
     <string-array name="questions">
         <item>Какое прозвище было у вас в детстве?</item>

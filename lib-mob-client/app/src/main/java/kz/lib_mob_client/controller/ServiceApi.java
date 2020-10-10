@@ -5,6 +5,7 @@ import java.util.List;
 import kz.lib_mob_client.entity.AccessToken;
 import kz.lib_mob_client.entity.AllBook;
 import kz.lib_mob_client.entity.ExhibitionRespond;
+import kz.lib_mob_client.entity.Museum;
 import kz.lib_mob_client.entity.News;
 import kz.lib_mob_client.entity.RegulatoryDocumentation;
 import kz.lib_mob_client.entity.ReportRequest;
@@ -62,4 +63,8 @@ public interface ServiceApi {
 
     @GET("exhibition/getall")
     public Call<List<ExhibitionRespond>> getAllExhibitions();
+
+    @GET("museum/getall")
+    public Call<List<Museum>> getAllMuseum();
+
 }

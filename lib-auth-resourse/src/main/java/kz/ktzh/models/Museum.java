@@ -7,7 +7,7 @@ public class Museum {
 	private int id;
 	private String name;
 	private String description;
-	private List<Exhibit> ExhibitList;		
+	private List<Exhibit> exhibitList;		
 
 	public int getId() {
 		return id;
@@ -34,12 +34,14 @@ public class Museum {
 	}
 
 	public List<Exhibit> getExhibitList() {
-		return ExhibitList;
+		return exhibitList;
 	}
 
 	public void setExhibitList(List<Exhibit> exhibitList) {
-		ExhibitList = exhibitList;
+		this.exhibitList = exhibitList;
 	}
+
+	
 	
 	
 	
