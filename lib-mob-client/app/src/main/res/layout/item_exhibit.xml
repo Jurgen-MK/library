@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardUseCompatPadding="true">
+
+
+    <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cell_content_view"
     android:layout_width="match_parent"
@@ -15,17 +27,17 @@
         android:gravity="center"
         android:text="Название экспоната"
         android:textColor="#000000"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
     <ImageView
         android:id="@+id/eximage"
         android:layout_width="match_parent"
         android:scaleType="fitXY"
-        android:layout_height="350dp" />
+        android:layout_height="325dp" />
 
     <TextView
         android:id="@+id/descriptionTv"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="125dp"
         android:background="#FFFFFF"
         android:fontFamily="@font/roboto"
         android:gravity="center"
@@ -33,3 +45,4 @@
         android:textColor="#000000"
         android:textSize="14sp" />
 </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -2,25 +2,28 @@ package kz.lib_mob_client.entity;
 
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
+import com.azoft.carousellayoutmanager.CarouselLayoutManager;
+import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener;
+import com.azoft.carousellayoutmanager.CenterScrollListener;
 import com.ramotion.foldingcell.FoldingCell;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-
 import eu.davidea.flexibleadapter.FlexibleAdapter;
-import eu.davidea.flexibleadapter.common.FlexibleItemDecoration;
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem;
 import eu.davidea.flexibleadapter.items.IFlexible;
 import eu.davidea.viewholders.FlexibleViewHolder;
 import kz.lib_mob_client.R;
+import kz.lib_mob_client.manager.FlexibleCarouselLayouManager;
 
 public class Museum extends AbstractFlexibleItem<Museum.ViewHolder> {
 
@@ -99,7 +102,6 @@ public class Museum extends AbstractFlexibleItem<Museum.ViewHolder> {
         list.addAll(exhibitList);
         FlexibleAdapter<IFlexible> adapter1 = new FlexibleAdapter<>(list);
         holder.exhibitRv.setAdapter(adapter1);
-
     }
 
 
@@ -117,8 +119,14 @@ public class Museum extends AbstractFlexibleItem<Museum.ViewHolder> {
             titleTv = view.findViewById(R.id.titleTv);
             foldingCell = view.findViewById(R.id.folding_cell);
             exhibitRv = view.findViewById(R.id.exhibitRv);
-            RecyclerView.LayoutManager manager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
+            //RecyclerView.LayoutManager manager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
+            FlexibleCarouselLayouManager manager = new FlexibleCarouselLayouManager(CarouselLayoutManager.HORIZONTAL);
+            manager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
             exhibitRv.setLayoutManager(manager);
+            exhibitRv.setHasFixedSize(true);
+            exhibitRv.addOnScrollListener(new CenterScrollListener());
+            SnapHelper snapHelper = new PagerSnapHelper();
+            snapHelper.attachToRecyclerView(exhibitRv);
         }
     }
 

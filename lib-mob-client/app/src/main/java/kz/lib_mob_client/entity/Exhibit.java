@@ -80,8 +80,7 @@ public class Exhibit extends AbstractFlexibleItem<Exhibit.ViewHolder> {
 						.addHeader("Authorization", "Bearer " + tokenManager.getToken().getAccess_token())
 						.build());
 		Glide.with(ctx)
-				.load(glideUrl).placeholder(R.drawable.arrow).error(R.drawable.arrow)
-				.into(holder.eximg);
+				.load(glideUrl).placeholder(R.drawable.imgplaceholder).error(R.drawable.arrow).into(holder.eximg);
 		holder.descriptionTv.setText(description);
 		holder.nameTv.setText(name);
 	}
