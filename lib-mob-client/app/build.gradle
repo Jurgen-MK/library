@@ -64,4 +64,5 @@ dependencies {
     // From 1.0.0-b3, library is compiled with data binding v2
     implementation 'eu.davidea:flexible-adapter-databinding:1.0.0'
     implementation 'com.snatik:storage:2.1.0'
+    implementation 'com.google.android.material:material:1.2.1'
 }
