@@ -5,8 +5,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
+import com.azoft.carousellayoutmanager.CarouselLayoutManager;
+import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener;
+import com.azoft.carousellayoutmanager.CenterScrollListener;
 import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.ArrayList;
@@ -18,6 +23,7 @@ import eu.davidea.flexibleadapter.items.AbstractFlexibleItem;
 import eu.davidea.flexibleadapter.items.IFlexible;
 import eu.davidea.viewholders.FlexibleViewHolder;
 import kz.lib_mob_client.R;
+import kz.lib_mob_client.manager.FlexibleCarouselLayouManager;
 
 public class ExhibitionRespond extends AbstractFlexibleItem<ExhibitionRespond.ViewHolder> {
 	
@@ -122,9 +128,14 @@ public class ExhibitionRespond extends AbstractFlexibleItem<ExhibitionRespond.Vi
 			placeTv = view.findViewById(R.id.placeTv);
 			descriptionTv = view.findViewById(R.id.descriptionTv);
 			foldingCell = view.findViewById(R.id.folding_cell);
-			RecyclerView.LayoutManager manager = new LinearLayoutManager(view.getContext());
+			//RecyclerView.LayoutManager manager = new LinearLayoutManager(view.getContext());
 			imagesRv = view.findViewById(R.id.imagesRv);
+			FlexibleCarouselLayouManager manager = new FlexibleCarouselLayouManager(CarouselLayoutManager.HORIZONTAL);
+			manager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
 			imagesRv.setLayoutManager(manager);
+			imagesRv.addOnScrollListener(new CenterScrollListener());
+			SnapHelper snapHelper = new PagerSnapHelper();
+			snapHelper.attachToRecyclerView(imagesRv);
 		}
 	}
 	

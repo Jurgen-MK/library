@@ -40,7 +40,12 @@
                 android:background="#FFFFFF"
                 android:textColor="#000000"
                 android:textSize="18sp" />
-
+        <LinearLayout
+            android:id="@+id/rvlayout"
+            android:layout_width="match_parent"
+            android:layout_height="325dp"
+            android:orientation="vertical"
+            >
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/imagesRv"
                 android:layout_width="match_parent"
@@ -48,7 +53,7 @@
                 android:layout_gravity="bottom"
                 android:nestedScrollingEnabled="false"
                 tools:listitem="@layout/sub_item_exhibition" />
-
+        </LinearLayout>
         </LinearLayout>
         ​
 

@@ -69,7 +69,7 @@ public class ExhibitionImage extends AbstractFlexibleItem<ExhibitionImage.ViewHo
                         .addHeader("Authorization", "Bearer " + tokenManager.getToken().getAccess_token())
                         .build());
         Glide.with(ctx)
-                .load(glideUrl).placeholder(R.drawable.arrow).error(R.drawable.arrow)
+                .load(glideUrl).placeholder(R.drawable.imgplaceholder).error(R.drawable.arrow)
                 .into(holder.eximg);
     }
 
