@@ -36,6 +36,7 @@ import kz.lib_mob_client.fragments.InnovationReportFragment;
 import kz.lib_mob_client.fragments.LearningMenuFragment;
 import kz.lib_mob_client.fragments.MuseumFragment;
 import kz.lib_mob_client.fragments.NewsFragment;
+import kz.lib_mob_client.fragments.PublishingProductsFragment;
 import kz.lib_mob_client.fragments.RegulatoryMenuFragment;
 import kz.lib_mob_client.fragments.RegulatoryDocumentationFragment;
 import kz.lib_mob_client.fragments.SearchFragment;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     InnovationReportFragment irf;
     ExhibitionFragment exf;
     MuseumFragment mf;
+    PublishingProductsFragment ppf;
     private int SETTINGS_REQUEST_CODE = 1;
     private long backPressedTime;
     private Toast backToast;
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         irf = new InnovationReportFragment();
         exf = new ExhibitionFragment();
         mf = new MuseumFragment();
+        ppf = new PublishingProductsFragment();
         BoomMenuButton bmb = findViewById(R.id.bmb);
 
         bmb.addBuilder(new HamButton.Builder()
@@ -123,6 +126,17 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onBoomButtonClick(int index) {
                         displayFragment(mf);
+                    }
+                }));
+        bmb.addBuilder(new HamButton.Builder()
+                .normalImageRes(R.drawable.pencil)
+                .normalTextRes(R.string.MenuItem9)
+                .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
+                .normalColor(Color.parseColor("#FF82B1FF"))
+                .listener(new OnBMClickListener() {
+                    @Override
+                    public void onBoomButtonClick(int index) {
+                        displayFragment(ppf);
                     }
                 }));
 
