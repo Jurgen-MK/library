@@ -1,8 +1,11 @@
 package kz.lib_mob_client.entity;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserInfo {
+public class UserInfo implements Serializable {
 
 
     private int id;
