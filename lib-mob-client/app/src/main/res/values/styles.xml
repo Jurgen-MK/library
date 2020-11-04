@@ -1,11 +1,16 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar.Bridge">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="ms_stepperStyle">@style/StepperStyle</item>
     </style>
+    <style name="StepperStyle">
+        <item name="ms_stepperType">dots</item>
+        <item name="ms_activeStepColor">#006867</item>
+        <item name="ms_inactiveStepColor">#5C006867</item>
+        <item name="ms_bottomNavigationBackground">@color/cardview_dark_background</item>
+    </style>
+
 
 </resources>

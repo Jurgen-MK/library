@@ -1,6 +1,8 @@
 package kz.lib_mob_client.entity;
 
-public class Users {
+import java.io.Serializable;
+
+public class Users implements Serializable {
 
 
 	private int id;
