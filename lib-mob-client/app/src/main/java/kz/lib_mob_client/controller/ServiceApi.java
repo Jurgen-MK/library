@@ -4,7 +4,10 @@ import java.util.List;
 
 import kz.lib_mob_client.entity.AccessToken;
 import kz.lib_mob_client.entity.AllBook;
+import kz.lib_mob_client.entity.ExhibitionRespond;
+import kz.lib_mob_client.entity.Museum;
 import kz.lib_mob_client.entity.News;
+import kz.lib_mob_client.entity.PublishingProducts;
 import kz.lib_mob_client.entity.RegulatoryDocumentation;
 import kz.lib_mob_client.entity.ReportRequest;
 import kz.lib_mob_client.entity.SearchRequest;
@@ -58,4 +61,14 @@ public interface ServiceApi {
 
     @POST("report/get")
     public Call<ResponseBody> getReport(@Body ReportRequest reportRequest);
+
+    @GET("exhibition/getall")
+    public Call<List<ExhibitionRespond>> getAllExhibitions();
+
+    @GET("museum/getall")
+    public Call<List<Museum>> getAllMuseum();
+
+    @GET("/pubprod/getall")
+    public Call<List<PublishingProducts>> getAllPublishingProducts();
+
 }

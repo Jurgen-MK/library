@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:scrollbarStyle="insideInset"
+
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".LoginActivity">
 
@@ -60,8 +61,8 @@
             android:keepScreenOn="true"
             android:layoutMode="clipBounds"
             app:bmb_buttonEnum="ham"
-            app:bmb_buttonPlaceEnum="buttonPlace_ham_3"
-            app:bmb_piecePlaceEnum="piecePlace_ham_3"
+            app:bmb_buttonPlaceEnum="buttonPlace_ham_6"
+            app:bmb_piecePlaceEnum="piecePlace_ham_6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

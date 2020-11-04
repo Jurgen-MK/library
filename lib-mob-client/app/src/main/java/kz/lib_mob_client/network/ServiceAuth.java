@@ -22,7 +22,7 @@ public class ServiceAuth {
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
     private static OkHttpClient.Builder httpClientReg = new OkHttpClient.Builder();
-    private static HttpLoggingInterceptor htmlloginterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);;
+    private static HttpLoggingInterceptor htmlloginterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
 
     private static Retrofit.Builder authBuilder =
             new Retrofit.Builder()
