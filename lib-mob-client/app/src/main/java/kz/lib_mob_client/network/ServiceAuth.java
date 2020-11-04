@@ -15,13 +15,14 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ServiceAuth {
 
-    public static final String AUTH_API_BASE_URL = "http://192.168.1.111:9000";
-    public static final String RES_API_BASE_URL = "http://192.168.1.111:9100";
+    public static final String AUTH_API_BASE_URL = "http://192.168.0.100:9000";
+    public static final String RES_API_BASE_URL = "http://192.168.0.100:9100";
     public final static String CLIENT_ID = "clientId";
     public final static String CLIENT_SECRET = "secret";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
     private static OkHttpClient.Builder httpClientReg = new OkHttpClient.Builder();
+    private static HttpLoggingInterceptor htmlloginterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);;
 
     private static Retrofit.Builder authBuilder =
             new Retrofit.Builder()
@@ -77,7 +78,7 @@ public class ServiceAuth {
             Log.i("ACCESS_TOKEN", tokenManager.getToken().getAccess_token());
             if (!httpClient.interceptors().contains(interceptor)) {
                 httpClient.addInterceptor(interceptor);
-
+                httpClient.addInterceptor(htmlloginterceptor);
                 resBuilder.client(httpClient.authenticator(TokenAuthenticator.getInstance(tokenManager)).build());
                 resRetrofit = resBuilder.build();
             }

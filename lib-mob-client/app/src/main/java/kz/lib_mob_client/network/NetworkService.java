@@ -11,7 +11,7 @@ public class NetworkService {
 
 
 
-    private static final String BASE_URL = "http://192.168.1.111:9100";
+    private static final String BASE_URL = "http://192.168.0.100:9100";
     private Retrofit mRetrofit;
     private String accessToken;
 
