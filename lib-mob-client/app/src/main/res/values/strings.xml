@@ -7,6 +7,7 @@
     <string name="MenuItem4">Научно-техническая информация</string>
     <string name="MenuItem5">Издательско-музейная деятельность</string>
     <string name="MenuItem6">Отчет</string>
+    <string name="MenuItem7">Планы проведения тех.занятий по темам</string>
 
     <string-array name="questions">
         <item>Какое прозвище было у вас в детстве?</item>
