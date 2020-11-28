@@ -1,12 +1,12 @@
 <resources>
     <string name="placeholder">placeholder</string>
     <string name="app_name">Библиотека</string>
-    <string name="MenuItem1">Поиск</string>
-    <string name="MenuItem2">Новости</string>
+    <string name="MenuItem1">Главная</string>
+    <string name="MenuItem2">Музейно-издательская деятельность</string>
     <string name="MenuItem3">Учебно-методическая информация</string>
     <string name="MenuItem4">Научно-техническая информация</string>
     <string name="MenuItem5">Издательско-музейная деятельность</string>
-    <string name="MenuItem6">Отчет</string>
+    <string name="MenuItem6">Производственное обучение</string>
     <string name="MenuItem7">Выставки</string>
     <string name="MenuItem8">Музеи</string>
     <string name="MenuItem9">Издательская продукция</string>
@@ -57,6 +57,8 @@
         <item>Аналитические обзоры</item>
         <item>Тематические подборки</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

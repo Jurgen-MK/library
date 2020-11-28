@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.karumi.dexter.Dexter;
@@ -34,28 +35,34 @@ import kz.lib_mob_client.fragments.AllBookFragment;
 import kz.lib_mob_client.fragments.ExhibitionFragment;
 import kz.lib_mob_client.fragments.InnovationReportFragment;
 import kz.lib_mob_client.fragments.LearningMenuFragment;
+import kz.lib_mob_client.fragments.MainMenuFragment;
 import kz.lib_mob_client.fragments.MuseumFragment;
+import kz.lib_mob_client.fragments.MuseumPublishingMenu;
 import kz.lib_mob_client.fragments.NewsFragment;
 import kz.lib_mob_client.fragments.PublishingProductsFragment;
 import kz.lib_mob_client.fragments.RegulatoryMenuFragment;
 import kz.lib_mob_client.fragments.RegulatoryDocumentationFragment;
 import kz.lib_mob_client.fragments.SearchFragment;
 import kz.lib_mob_client.fragments.TechnicalMenuFragment;
+import kz.lib_mob_client.fragments.TrainingMenuFragment;
 import kz.lib_mob_client.utils.SAFUtils;
 
 public class MainActivity extends AppCompatActivity {
 
-    RegulatoryMenuFragment regfrag;
+   /* RegulatoryMenuFragment regfrag;
     TechnicalMenuFragment techfrag;
     LearningMenuFragment learfrag;
     RegulatoryDocumentationFragment rdf;
-    AllBookFragment abf;
+    AllBookFragment abf;*/
     SearchFragment sf;
     NewsFragment nf;
     InnovationReportFragment irf;
     ExhibitionFragment exf;
     MuseumFragment mf;
     PublishingProductsFragment ppf;
+    MainMenuFragment mmf;
+    MuseumPublishingMenu mpmf;
+    TrainingMenuFragment tmf;
     private int SETTINGS_REQUEST_CODE = 1;
     private long backPressedTime;
     private Toast backToast;
@@ -64,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        regfrag = new RegulatoryMenuFragment();
+        /*regfrag = new RegulatoryMenuFragment();
         techfrag = new TechnicalMenuFragment();
         learfrag = new LearningMenuFragment();
         sf = new SearchFragment();
@@ -72,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         irf = new InnovationReportFragment();
         exf = new ExhibitionFragment();
         mf = new MuseumFragment();
-        ppf = new PublishingProductsFragment();
+        ppf = new PublishingProductsFragment();*/
         BoomMenuButton bmb = findViewById(R.id.bmb);
 
         bmb.addBuilder(new HamButton.Builder()
@@ -82,7 +89,10 @@ public class MainActivity extends AppCompatActivity {
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
                 .listener(new OnBMClickListener() {
                     @Override
-                    public void onBoomButtonClick(int index) {  displayFragment(sf); }
+                    public void onBoomButtonClick(int index) {
+                        mmf = new MainMenuFragment();
+                        displayFragment(mmf);
+                    }
                 }));
         bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.pencil)
@@ -92,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-                        displayFragment(nf);
+                        mpmf = new MuseumPublishingMenu();
+                        displayFragment(mpmf);
                     }
                 }));
         bmb.addBuilder(new HamButton.Builder()
@@ -103,10 +114,11 @@ public class MainActivity extends AppCompatActivity {
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
-                        displayFragment(irf);
+                        tmf = new TrainingMenuFragment();
+                        displayFragment(tmf);
                     }
                 }));
-        bmb.addBuilder(new HamButton.Builder()
+        /*bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.pencil)
                 .normalTextRes(R.string.MenuItem7)
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
@@ -138,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onBoomButtonClick(int index) {
                         displayFragment(ppf);
                     }
-                }));
+                }));*/
 
         /*bmb.addBuilder(new HamButton.Builder()
                 .normalImageRes(R.drawable.thinking)
@@ -161,6 +173,31 @@ public class MainActivity extends AppCompatActivity {
                 .normalTextRes(R.string.MenuItem5)
                 .imageRect(new Rect(40, 40, Util.dp2px(50), Util.dp2px(50)))
                 .normalColor(Color.parseColor("#FF82B1FF")));*/
+    }
+
+    public void onMenuSearchBtnClick(View v){
+       sf = new SearchFragment();
+       displayFragment(sf);
+    }
+
+    public void onMenuNewsBtnClick(View v){
+        nf = new NewsFragment();
+        displayFragment(nf);
+    }
+
+    public void onMenuMuseumBtnClick(View v){
+        mf = new MuseumFragment();
+        displayFragment(mf);
+    }
+
+    public void onMenuExhibitionBtnClick(View v){
+        exf = new ExhibitionFragment();
+        displayFragment(exf);
+    }
+
+    public void onMenuPublishingProductsBtnClick(View v){
+        ppf = new PublishingProductsFragment();
+        displayFragment(ppf);
     }
 
     /*public void onRegMenuBtnClick(View v) {

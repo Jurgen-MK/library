@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="313dp"
+        android:layout_height="385dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="140dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="46dp"
+                app:srcCompat="@drawable/files" />
+
+            <Button
+                android:id="@+id/museumbtn"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF82B1FF"
+                android:onClick="onMenuMuseumBtnClick"
+                android:text="Музеи" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="46dp"
+                app:srcCompat="@drawable/files" />
+
+            <Button
+                android:id="@+id/exhibitionbtn"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF82B1FF"
+                android:onClick="onMenuExhibitionBtnClick"
+                android:text="Выставки" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="46dp"
+                app:srcCompat="@drawable/files" />
+
+            <Button
+                android:id="@+id/publishingbtn"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF82B1FF"
+                android:onClick="onMenuPublishingProductsBtnClick"
+                android:text="Издательская продукция" />
+        </TableRow>
+
+
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
