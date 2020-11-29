@@ -45,6 +45,7 @@ import kz.lib_mob_client.fragments.RegulatoryDocumentationFragment;
 import kz.lib_mob_client.fragments.SearchFragment;
 import kz.lib_mob_client.fragments.TechnicalMenuFragment;
 import kz.lib_mob_client.fragments.TrainingMenuFragment;
+import kz.lib_mob_client.fragments.YearPlansFragment;
 import kz.lib_mob_client.utils.SAFUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     ExhibitionFragment exf;
     MuseumFragment mf;
     PublishingProductsFragment ppf;
+    YearPlansFragment ypf;
     MainMenuFragment mmf;
     MuseumPublishingMenu mpmf;
     TrainingMenuFragment tmf;
@@ -198,6 +200,11 @@ public class MainActivity extends AppCompatActivity {
     public void onMenuPublishingProductsBtnClick(View v){
         ppf = new PublishingProductsFragment();
         displayFragment(ppf);
+    }
+
+    public void onMenuYearPlansBtnClick(View v){
+        ypf = new YearPlansFragment();
+        displayFragment(ypf);
     }
 
     /*public void onRegMenuBtnClick(View v) {

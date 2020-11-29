@@ -12,6 +12,7 @@ import kz.lib_mob_client.entity.RegulatoryDocumentation;
 import kz.lib_mob_client.entity.ReportRequest;
 import kz.lib_mob_client.entity.SearchRequest;
 import kz.lib_mob_client.entity.SearchRespond;
+import kz.lib_mob_client.entity.TechnicalLessonYearPlan;
 import kz.lib_mob_client.entity.UserCreationRequest;
 import kz.lib_mob_client.entity.UserInfo;
 import okhttp3.ResponseBody;
@@ -70,5 +71,8 @@ public interface ServiceApi {
 
     @GET("/pubprod/getall")
     public Call<List<PublishingProducts>> getAllPublishingProducts();
+
+    @GET("/TechnicalLessonYearPlans/getall")
+    public Call<List<TechnicalLessonYearPlan>> getAllTechnicalLessonYearPlans();
 
 }
