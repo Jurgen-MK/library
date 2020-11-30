@@ -13,6 +13,8 @@ import kz.lib_mob_client.entity.ReportRequest;
 import kz.lib_mob_client.entity.SearchRequest;
 import kz.lib_mob_client.entity.SearchRespond;
 import kz.lib_mob_client.entity.TechnicalLessonYearPlan;
+import kz.lib_mob_client.entity.TechnicalLessonPlan;
+import kz.lib_mob_client.entity.TechnicalLessonPlanInfo;
 import kz.lib_mob_client.entity.UserCreationRequest;
 import kz.lib_mob_client.entity.UserInfo;
 import okhttp3.ResponseBody;
@@ -74,5 +76,11 @@ public interface ServiceApi {
 
     @GET("/TechnicalLessonYearPlans/getall")
     public Call<List<TechnicalLessonYearPlan>> getAllTechnicalLessonYearPlans();
+
+    @POST("/plans/listtechplantheme")
+    public Call<List<TechnicalLessonPlan>> getTechPlans();
+
+    @POST("/plans/techplanbyid")
+    public Call<TechnicalLessonPlanInfo> getTechPlanById(@Query("id") int id);
 
 }
