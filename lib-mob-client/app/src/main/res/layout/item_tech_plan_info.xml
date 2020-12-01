@@ -7,58 +7,58 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="420dp"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
         app:cardUseCompatPadding="true">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/titleTV"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.28"
-                    android:background="@drawable/border"
+                    android:layout_height="55dp"
+                    android:background="#512DA8"
+                    android:fontFamily="@font/roboto"
                     android:gravity="center"
-                    android:textColor="#000000"
-                    android:textAlignment="gravity"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
                     android:text="План проведения технического занятия"/>
                 <TextView
                     android:id="@+id/techLessonThemeTV"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="450dp"
                     android:layout_weight="0.15"
-                    android:background="@drawable/bg_white_without_border"
+                    android:background="#FFFFFF"
                     android:gravity="center"
                     android:textColor="#000000"
                     android:textSize="30dp"/>
                 <TextView
                     android:id="@+id/lessonTypeTV"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="55dp"
                     android:layout_weight="0.28"
-                    android:background="@drawable/bg_white_without_border"
+                    android:background="#FFFFFF"
                     android:gravity="center"
                     android:textColor="#000000"
                     android:padding="8dp"/>
                 <TextView
                     android:id="@+id/positionTV"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="55dp"
                     android:layout_weight="0.3"
-                    android:background="@drawable/bg_white_without_border"
+                    android:background="#FFFFFF"
                     android:gravity="center"
                     android:textColor="#000000"
                     android:paddingRight="8dp"/>
                 <TextView
                     android:id="@+id/fullNameTV"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="55dp"
                     android:layout_weight="0.3"
-                    android:background="@drawable/bg_white_without_border"
+                    android:background="#FFFFFF"
                     android:gravity="center"
                     android:textColor="#000000"
                     android:paddingRight="8dp" />

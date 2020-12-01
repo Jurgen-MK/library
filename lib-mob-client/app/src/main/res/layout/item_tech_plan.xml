@@ -2,79 +2,142 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
+    <com.ramotion.foldingcell.FoldingCell
+        android:id="@+id/folding_cell"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="match_parent"
         android:layout_margin="8dp"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="5dp"
-        app:cardUseCompatPadding="true">
+        android:clipChildren="false"
+        android:clipToPadding="false">
         <LinearLayout
+            android:id="@+id/cell_content_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/titleTV"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="#512DA8"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:text="План проведения технического занятия"/>
+            <TextView
+                android:id="@+id/techLessonThemeTV"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_weight="0.15"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="30dp"/>
+            <TextView
+                android:id="@+id/lessonTypeTV"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_weight="0.28"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="22sp"
+                android:padding="8dp"/>
+            <TextView
+                android:id="@+id/positionTV"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_weight="0.3"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="22sp"
+                android:paddingRight="8dp"/>
+            <TextView
+                android:id="@+id/fullNameTV"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_weight="0.3"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="22sp"
+                android:paddingRight="8dp" />
+            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/cell_title_view"
+            android:layout_width="match_parent"
+            android:layout_height="308dp"
             android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="308dp"
+                >
                 <TextView
                     android:id="@+id/branchTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="308dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
                     android:layout_weight="0.1"
-                    android:background="@drawable/border"
-                    android:gravity="center"
-                    android:textColor="#000000"
-                    />
-                <TextView
-                    android:id="@+id/subdivisionTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1"
-                    android:background="@drawable/border"
-                    android:gravity="center"
-                    android:textColor="#000000"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                    android:background="#512DA8"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="top|center"
+                    android:text="Подразделение"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/yearOfTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="86dp"
+                    android:layout_height="158dp"
                     android:layout_weight="0.3"
-                    android:background="@drawable/bg_white_without_border"
-                    android:gravity="right|center"
+                    android:background="#FFFFFF"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="top|center"
+                    android:text="Год"
                     android:textColor="#000000"
-                    android:paddingRight="8dp"
-                    android:textAlignment="gravity"
-                    />
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toEndOf="@+id/departmentTV"
+                    app:layout_constraintTop_toTopOf="@+id/departmentTV" />
+
                 <TextView
                     android:id="@+id/departmentTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="205dp"
+                    android:layout_height="308dp"
                     android:layout_weight="0.1"
-                    android:background="@drawable/bg_white_without_border"
+                    android:background="#FFFFFF"
+                    android:fontFamily="@font/roboto"
                     android:gravity="center"
+                    android:text="Отдел"
                     android:textColor="#000000"
-                    android:textSize="30dp"/>
+                    android:textSize="36sp"
+                    app:layout_constraintStart_toEndOf="@+id/branchTV"
+                    app:layout_constraintTop_toTopOf="@+id/branchTV" />
+
                 <TextView
                     android:id="@+id/linkTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="86dp"
+                    android:layout_height="163dp"
                     android:layout_weight="0.3"
-                    android:background="@drawable/bg_white_without_border"
-                    android:gravity="right|center"
+                    android:background="#FFFFFF"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="bottom|center"
+                    android:text="Скачать"
                     android:textColor="#000000"
-                    android:paddingRight="8dp"
-                    android:textAlignment="gravity"
-                    />
-            </LinearLayout>
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/departmentTV"
+                    app:layout_constraintStart_toEndOf="@+id/departmentTV" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+
+    </com.ramotion.foldingcell.FoldingCell>
 </LinearLayout>

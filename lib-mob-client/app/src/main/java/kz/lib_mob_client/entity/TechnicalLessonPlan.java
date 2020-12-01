@@ -7,11 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.ramotion.foldingcell.FoldingCell;
 
 import java.io.IOException;
 import java.util.List;
@@ -88,12 +91,30 @@ public class TechnicalLessonPlan extends AbstractFlexibleItem<TechnicalLessonPla
 
 	@Override
 	public void bindViewHolder(FlexibleAdapter<IFlexible> adapter, ViewHolder holder, int position, List<Object> payloads) {
-		holder.branchTV.setText(branch);
+		holder.branchTV.setText(branch+" "+subdivision);
 		holder.departmentTV.setText(department);
-		holder.subdivisionTV.setText(subdivision);
+		//holder.subdivisionTV.setText(subdivision);
 		holder.yearOfTV.setText(String.valueOf(yearOf));
 		holder.linkTV.setText("Скачать");
-		holder.departmentTV.setOnClickListener(new View.OnClickListener() {
+		holder.foldingCell.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Context ctx = v.getContext();
+				TokenManager tokenManager = TokenManager.getInstance(ctx.getSharedPreferences("prefs", ctx.MODE_PRIVATE));
+				try {
+					TechnicalLessonPlanInfo techPlanInfo = ServiceAuth.createService(ServiceApi.class, tokenManager).getTechPlanById(id).execute().body();
+					holder.techLessonThemeTv.setText(techPlanInfo.getTechLessonTheme());
+					holder.lessonTypeTv.setText(techPlanInfo.getLessonType());
+					holder.positionTv.setText(techPlanInfo.getPosition());
+					holder.fullNameTv.setText(techPlanInfo.getFullName());
+					holder.foldingCell.toggle(false);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+			}
+		});
+		/*holder.departmentTV.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				Context ctx = view.getContext();
@@ -108,34 +129,44 @@ public class TechnicalLessonPlan extends AbstractFlexibleItem<TechnicalLessonPla
 				}
 
 			}
-		});
-		holder.linkTV.setOnClickListener(new View.OnClickListener() {
+		});*/
+		/*holder.linkTV.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				Log.i("PLAN", "ON CLICK");
 			}
-		});
+		});*/
 	}
 
 	public class ViewHolder extends FlexibleViewHolder {
 		public TextView branchTV;
-		public TextView subdivisionTV;
+		//public TextView subdivisionTV;
 		public TextView yearOfTV;
 		public TextView departmentTV;
 		public TextView linkTV;
-
+		public TextView titleTv;
+		public TextView techLessonThemeTv;
+		public TextView lessonTypeTv;
+		public TextView positionTv;
+		public TextView fullNameTv;
+		public FoldingCell foldingCell;
 
 		public ViewHolder(View view, FlexibleAdapter adapter) {
 			super(view, adapter);
 			branchTV = view.findViewById(R.id.branchTV);
-			subdivisionTV = view.findViewById(R.id.subdivisionTV);
 			yearOfTV = view.findViewById(R.id.yearOfTV);
 			departmentTV = view.findViewById(R.id.departmentTV);
 			linkTV = view.findViewById(R.id.linkTV);
+			titleTv = view.findViewById(R.id.titleTV);
+			techLessonThemeTv = view.findViewById(R.id.techLessonThemeTV);
+			lessonTypeTv = view.findViewById(R.id.lessonTypeTV);
+			positionTv = view.findViewById(R.id.positionTV);
+			fullNameTv = view.findViewById(R.id.fullNameTV);
+			foldingCell = view.findViewById(R.id.folding_cell);
 		}
 	}
 
-	public static class Dialog extends DialogFragment{
+/*	public static class Dialog extends DialogFragment{
 
 		private TextView lessonTypeTV;
 		private TextView techLessonThemeTV;
@@ -167,6 +198,6 @@ public class TechnicalLessonPlan extends AbstractFlexibleItem<TechnicalLessonPla
 				fullNameTV.setText(technicalLessonPlanInfo.getFullName());
 			}
 		}
-	}
+	}*/
 
 }

@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         exf = new ExhibitionFragment();
         mf = new MuseumFragment();
         ppf = new PublishingProductsFragment();*/
-        tpf = new TechPlanByThemeFragment();
 
         BoomMenuButton bmb = findViewById(R.id.bmb);
 
@@ -222,6 +221,11 @@ public class MainActivity extends AppCompatActivity {
     public void onMenuYearPlansBtnClick(View v){
         ypf = new YearPlansFragment();
         displayFragment(ypf);
+    }
+
+    public void onMenuPlansByThemeBtnClick(View v){
+        tpf = new TechPlanByThemeFragment();
+        displayFragment(tpf);
     }
 
     /*public void onRegMenuBtnClick(View v) {

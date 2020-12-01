@@ -104,7 +104,7 @@ public class TechnicalLessonYearPlan extends AbstractFlexibleItem<TechnicalLesso
 			@Override
 			public void onClick(View v) {
 				if (info.isEmpty()) {
-					Toast.makeText(v.getContext(), "Нет экспонатов", Toast.LENGTH_SHORT).show();
+					Toast.makeText(v.getContext(), "Пусто", Toast.LENGTH_SHORT).show();
 				} else {
 					holder.foldingCell.toggle(false);
 				}

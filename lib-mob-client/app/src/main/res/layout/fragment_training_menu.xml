@@ -47,7 +47,7 @@
                 android:layout_width="253dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FF82B1FF"
-                android:onClick="onRegMenuBtnClick"
+                android:onClick="onMenuPlansByThemeBtnClick"
                 android:text="Планы по темам" />
         </TableRow>
 
