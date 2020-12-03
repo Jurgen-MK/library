@@ -11,6 +11,7 @@ import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -98,6 +99,10 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         searchButton.setOnClickListener(this);
         listSearchRespond = new ArrayList<>();
         rvRespond = view.findViewById(R.id.rvRespond);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(view.getContext(),
+                R.array.category, R.layout.spinner_search_item);
+        adapter.setDropDownViewResource(R.layout.spinner_search_item);
+        spCategory.setAdapter(adapter);
     }
 
 

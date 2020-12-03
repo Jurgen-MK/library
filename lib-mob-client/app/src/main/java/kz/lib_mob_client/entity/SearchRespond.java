@@ -2,6 +2,7 @@ package kz.lib_mob_client.entity;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -121,7 +122,7 @@ public class SearchRespond extends AbstractFlexibleItem<SearchRespond.ViewHolder
 	public class ViewHolder extends FlexibleViewHolder {
 		public TextView descriptionTV;
 		public TextView filenameTV;
-		public ImageButton downloadButton;
+		public Button downloadButton;
 		public ViewHolder(View view, FlexibleAdapter adapter) {
 			super(view, adapter);
 			descriptionTV = view.findViewById(R.id.descriptionTV);

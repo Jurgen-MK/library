@@ -38,7 +38,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="220dp"
         android:background="@drawable/border4"
+        android:textColor="#000000"
         android:hint="Поиск"
+        android:textColorHint="#000000"
         android:gravity="center"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +53,7 @@
         android:layout_marginStart="56dp"
         android:layout_marginTop="280dp"
         android:text="Найти"
+        android:backgroundTint="#9C27B0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
