@@ -1,33 +1,20 @@
 package kz.lib_mob_client;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
-import org.w3c.dom.CDATASection;
-
-import java.io.IOException;
-import java.io.Serializable;
-
-import kz.lib_mob_client.controller.ServiceApi;
-import kz.lib_mob_client.entity.UserCreationRequest;
 import kz.lib_mob_client.entity.UserInfo;
 import kz.lib_mob_client.entity.Users;
-import kz.lib_mob_client.fragments.RegStepOneFragment;
-import kz.lib_mob_client.network.ServiceAuth;
 import kz.lib_mob_client.utils.DataManager;
 import kz.lib_mob_client.utils.RegStepAdapter;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class RegistrationActivity extends AppCompatActivity implements StepperLayout.StepperListener, DataManager {
 
