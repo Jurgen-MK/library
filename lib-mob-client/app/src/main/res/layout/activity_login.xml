@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toStartOf="@id/guidelineLeft"
         app:layout_constraintStart_toEndOf="@id/guidelineRight"
         app:layout_constraintTop_toBottomOf="@id/iconText"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:hint="Введите логин"
         android:inputType="text" />
 
@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toStartOf="@id/guidelineLeft"
         app:layout_constraintStart_toEndOf="@id/guidelineRight"
         app:layout_constraintTop_toBottomOf="@id/etLogin"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:hint="Введите пароль"
         android:inputType="textPassword" />
 
@@ -71,23 +71,45 @@
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@id/guidelineLeft"
         app:layout_constraintStart_toEndOf="@id/guidelineRight"
         app:layout_constraintTop_toBottomOf="@id/etPassword"
         android:text="Войти" />
 
+    <View
+        android:id="@+id/line1"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:background="@drawable/bg_white"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin"
+        app:layout_constraintEnd_toStartOf="@id/tvForgot"
+        app:layout_constraintBottom_toTopOf="@id/footerLine"/>
+
     <TextView
-        android:id="@+id/tvOut"
+        android:id="@+id/tvForgot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toStartOf="@id/guidelineLeft"
-        app:layout_constraintStart_toEndOf="@id/guidelineRight"
-        app:layout_constraintTop_toBottomOf="@id/btnLogin"
+        app:layout_constraintBottom_toBottomOf="@id/line1"
+        app:layout_constraintTop_toTopOf="@id/line1"
+        app:layout_constraintEnd_toStartOf="@id/line2"
+        app:layout_constraintStart_toEndOf="@id/line1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:clickable="true"
         android:gravity="center"
-        android:text="Зарегистрироваться" />
+        android:text="Забыли пароль?" />
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:background="@drawable/bg_white"
+        app:layout_constraintBottom_toBottomOf="@id/tvForgot"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+        app:layout_constraintStart_toEndOf="@id/tvForgot"
+        app:layout_constraintTop_toTopOf="@id/tvForgot"/>
     
     <View
         android:id="@+id/footerLine"
@@ -99,10 +121,10 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/tvForgot"
+        android:id="@+id/tvOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Забыли пароль?"
+        android:text="Зарегистрироваться"
         app:layout_constraintTop_toBottomOf="@id/footerLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
