@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import ru.tinkoff.decoro.MaskImpl;
 import ru.tinkoff.decoro.parser.UnderscoreDigitSlotsParser;
+import ru.tinkoff.decoro.slots.PredefinedSlots;
 import ru.tinkoff.decoro.slots.Slot;
 import ru.tinkoff.decoro.watchers.FormatWatcher;
 import ru.tinkoff.decoro.watchers.MaskFormatWatcher;
@@ -57,15 +59,22 @@ public class RegStepThreeFragment extends Fragment implements Step, BlockingStep
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        FormatWatcher formatWatcher;
         etPhone = view.findViewById(R.id.etPhone);
+        MaskImpl mask = MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER);
+        mask.setHideHardcodedHead(true);
+        mask.setPlaceholder('*');
+        mask.setShowingEmptySlots(true);
+        formatWatcher = new MaskFormatWatcher(mask);
+        formatWatcher.installOn(etPhone);
+
         etEmail = view.findViewById(R.id.etEmail);
         etBDate = view.findViewById(R.id.etBDate);
         Slot[] slots = new UnderscoreDigitSlotsParser().parseSlots("____-__-__");
-        FormatWatcher formatWatcher = new MaskFormatWatcher( // форматировать текст будет вот он
+        formatWatcher = new MaskFormatWatcher( // форматировать текст будет вот он
                 MaskImpl.createTerminated(slots)
         );
         formatWatcher.installOn(etBDate);
-
     }
 
     @Override
@@ -81,11 +90,17 @@ public class RegStepThreeFragment extends Fragment implements Step, BlockingStep
     @Nullable
     @Override
     public VerificationError verifyStep() {
-        if (etPhone.getText().toString().trim().isEmpty())
+        String phone = etPhone.getText().toString().trim();
+        String email = etEmail.getText().toString().trim();
+        String birthDay = etBDate.getText().toString().trim();
+        if (phone.isEmpty() || phone.length() < 16 || phone.contains("*"))
             return new VerificationError("Введите номер телефона!");
-        if (etEmail.getText().toString().trim().isEmpty())
+        if (email.isEmpty()) {
             return new VerificationError("Введите почту!");
-        if (etBDate.getText().toString().trim().isEmpty())
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            return new VerificationError("Введите почту корректно!");
+        }
+        if (birthDay.isEmpty() || birthDay.length() < 10)
             return new VerificationError("Введите дату рождения!");
         return null;
     }

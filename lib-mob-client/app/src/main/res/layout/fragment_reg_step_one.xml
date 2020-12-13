@@ -7,7 +7,26 @@
     android:orientation="vertical"
     tools:context=".fragments.RegStepOneFragment">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiLayoutUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:endIconDrawable="@drawable/ic_baseline_person_24"
+        app:endIconMode="custom">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Введите логин"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--<EditText
         android:id="@+id/etLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,9 +35,28 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:hint="Введите логин"
-        android:inputType="text" />
+        android:inputType="text" />-->
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiLayoutPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:passwordToggleDrawable="@drawable/ic_baseline_remove_red_eye_24"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorAccent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Введите пароль"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--<EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,9 +65,28 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:hint="Введите пароль"
-        android:inputType="textPassword" />
+        android:inputType="textPassword" />-->
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiLayoutPasswordConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:passwordToggleDrawable="@drawable/ic_baseline_remove_red_eye_24"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorAccent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPasswordConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Подтвердите пароль"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--<EditText
         android:id="@+id/etPasswordConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,12 +95,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:hint="Подтвердите пароль"
-        android:inputType="textPassword" />
+        android:inputType="textPassword" />-->
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="129dp"
-        android:layout_margin="8dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
         app:cardUseCompatPadding="true">
@@ -60,7 +118,26 @@
                 android:layout_marginTop="20dp"
                 android:entries="@array/questions" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiLayoutAnswer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:endIconDrawable="@drawable/ic_baseline_privacy_tip_24"
+                app:endIconMode="custom">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAnswer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ответ на секретный вопрос"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--<EditText
                 android:id="@+id/etAnswer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +146,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:hint="Ответ на секретный вопрос"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName" />-->
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

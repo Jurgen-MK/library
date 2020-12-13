@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.fragment.app.Fragment;
 
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +63,20 @@ public class RegStepOneFragment extends Fragment implements BlockingStep {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         etLogin = view.findViewById(R.id.etLogin);
+        etLogin.setFilters(new InputFilter[] {
+                new InputFilter() {
+                    @Override
+                    public CharSequence filter(CharSequence charSequence, int start, int end, Spanned spanned, int dStart, int dEnd) {
+                        if (charSequence.equals("")) { // for backspace
+                            return charSequence;
+                        }
+                        if (charSequence.toString().matches("[a-zA-Z ]+")) {
+                            return charSequence;
+                        }
+                        return "";
+                    }
+                }
+        });
         etPassword = view.findViewById(R.id.etPassword);
         etPasswordConfirm = view.findViewById(R.id.etPasswordConfirm);
         etAnswer = view.findViewById(R.id.etAnswer);
