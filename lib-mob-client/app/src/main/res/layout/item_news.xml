@@ -23,18 +23,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:layout_weight="0.2"
-                android:background="@drawable/border"
                 android:gravity="center"
-                android:textColor="#000000" />
+                android:textColor="#1E1C1C" />
 
             <TextView
                 android:id="@+id/headerTV"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="83dp"
                 android:layout_weight="0.2"
-                android:background="@drawable/border"
                 android:gravity="center"
-                android:textColor="#000000" />
+                android:textColor="#1E1C1C" />
 
         </LinearLayout>
 

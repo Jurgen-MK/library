@@ -19,32 +19,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/spCategory"
-        android:layout_width="398dp"
-        android:layout_height="48dp"
-        android:background="@drawable/border4"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="164dp"
-        android:entries="@array/category"
-        android:popupBackground="@android:drawable/dialog_holo_light_frame"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Выбрать категорию"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSearch">
 
-    <EditText
-        android:id="@+id/etSearchString"
-        android:layout_width="398dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
+        <AutoCompleteTextView
+            android:id="@+id/spCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiSearchString"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="220dp"
-        android:background="@drawable/border4"
-        android:textColor="#000000"
-        android:hint="Поиск"
-        android:textColorHint="#000000"
-        android:gravity="center"
-        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSearchString"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Введите название документа"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/searchButton"
@@ -52,8 +58,8 @@
         android:layout_height="50dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="280dp"
-        android:text="Найти"
         android:backgroundTint="#9C27B0"
+        android:text="Найти"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,7 +68,6 @@
         android:id="@+id/rvRespond"
         android:layout_width="411dp"
         android:layout_height="0dp"
-        android:background="@drawable/border3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

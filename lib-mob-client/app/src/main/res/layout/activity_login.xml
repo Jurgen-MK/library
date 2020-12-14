@@ -54,7 +54,8 @@
         app:layout_constraintTop_toBottomOf="@id/iconText"
         android:layout_marginTop="50dp"
         app:endIconDrawable="@drawable/ic_baseline_person_24"
-        app:endIconMode="custom">
+        app:endIconMode="custom"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etLogin"
@@ -85,7 +86,8 @@
         app:layout_constraintTop_toBottomOf="@id/tiLayoutUser"
         app:passwordToggleDrawable="@drawable/ic_baseline_remove_red_eye_24"
         app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/colorAccent">
+        app:passwordToggleTint="@color/colorAccent"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPassword"

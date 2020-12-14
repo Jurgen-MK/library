@@ -24,7 +24,6 @@
         android:id="@+id/rvNews"
         android:layout_width="411dp"
         android:layout_height="0dp"
-        android:background="@drawable/border3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

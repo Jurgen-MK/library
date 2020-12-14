@@ -8,10 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.StrictMode;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -46,6 +51,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
 
     private String mParam1;
     private String mParam2;
+    private int spinnerPosition;
+    private String spinnerPositionText;
 
     Spinner spCategory;
     Button searchButton;
@@ -92,17 +99,34 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        spCategory = view.findViewById(R.id.spCategory);
+        //spCategory = view.findViewById(R.id.spCategory);
         tvSearch = view.findViewById(R.id.tvSearch);
         etSearchString = view.findViewById(R.id.etSearchString);
         searchButton = view.findViewById(R.id.searchButton);
         searchButton.setOnClickListener(this);
         listSearchRespond = new ArrayList<>();
         rvRespond = view.findViewById(R.id.rvRespond);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(view.getContext(),
+       /* ArrayAdapter adapter = ArrayAdapter.createFromResource(view.getContext(),
                 R.array.category, R.layout.spinner_search_item);
         adapter.setDropDownViewResource(R.layout.spinner_search_item);
+        spCategory.setAdapter(adapter);*/
+        String[] category = getResources().getStringArray(R.array.category);
+
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(
+                        getContext(),
+                        R.layout.spinner_search_item,
+                        category);
+        AutoCompleteTextView spCategory =
+                view.findViewById(R.id.spCategory);
         spCategory.setAdapter(adapter);
+        spCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                spinnerPosition = position;
+                spinnerPositionText = (String) adapterView.getItemAtPosition(position);
+            }
+        });
     }
 
 
@@ -110,15 +134,15 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         SearchRequest searchRequest = new SearchRequest();
         //spCategory.getSelectedItemPosition()
-        tvSearch.setText("позиция " + (spCategory.getSelectedItemPosition() + 1));
+        tvSearch.setText(spinnerPositionText);
         searchRequest.setSearchString(etSearchString.getText().toString());
-        if (IntStream.rangeClosed(1, 13).boxed().collect(Collectors.toList()).contains(spCategory.getSelectedItemPosition() + 1)) {
+        if (IntStream.rangeClosed(1, 13).boxed().collect(Collectors.toList()).contains(spinnerPosition + 1)) {
             searchRequest.setCatalogMode("npdntd");
-            searchRequest.setCatalogType(String.valueOf(spCategory.getSelectedItemPosition() + 1));
+            searchRequest.setCatalogType(String.valueOf(spinnerPosition + 1));
         }
-        if (IntStream.rangeClosed(14, 16).boxed().collect(Collectors.toList()).contains(spCategory.getSelectedItemPosition() + 1)) {
+        if (IntStream.rangeClosed(14, 16).boxed().collect(Collectors.toList()).contains(spinnerPosition + 1)) {
             searchRequest.setCatalogMode("allbook");
-            switch (spCategory.getSelectedItemPosition() + 1) {
+            switch (spinnerPosition + 1) {
                 case 14:
                     searchRequest.setCatalogType("1");
                     break;
@@ -130,15 +154,15 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                     break;
             }
         }
-        if ((spCategory.getSelectedItemPosition() + 1) == 17) {
+        if ((spinnerPosition + 1) == 17) {
             searchRequest.setCatalogMode("article");
         }
-        if ((spCategory.getSelectedItemPosition() + 1) == 18) {
+        if ((spinnerPosition + 1) == 18) {
             searchRequest.setCatalogMode("video");
         }
-        if (IntStream.rangeClosed(19, 20).boxed().collect(Collectors.toList()).contains(spCategory.getSelectedItemPosition() + 1)) {
+        if (IntStream.rangeClosed(19, 20).boxed().collect(Collectors.toList()).contains(spinnerPosition + 1)) {
             searchRequest.setCatalogMode("booksinscalscatalog");
-            switch (spCategory.getSelectedItemPosition() + 1) {
+            switch (spinnerPosition + 1) {
                 case 19:
                     searchRequest.setCatalogType("14");
                     break;
