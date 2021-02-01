@@ -47,7 +47,7 @@ public class UserService {
 				user.setPasswordmd5(md5String(user.getPassword()));
 				user.setPassword(passwordEnc.encode(user.getPassword()));
 				user.setAnswer(md5String(user.getAnswer()));
-				System.out.println("quest" + user.getSecretquestions());
+				System.out.println("quest" + user.getSecretquestion());
 				userRepo.save(user);
 				userRoleRepo.save(new Authorities(user.getUsername(), ROLE));
 				userGroupsRepo.save(new UserGroups(user.getId(), 1));
@@ -69,14 +69,14 @@ public class UserService {
 	}
 
 	public String changePassword(String username, String oldpass, String newpass) {
-		try {			
+		try {
 			if (passwordEnc.matches(oldpass, userDao.getPassword(username))) {
 				userDao.resetPassword(username, passwordEnc.encode(newpass), md5String(newpass));
 				return "200";
 			} else {
 				return "100";
 			}
-		} catch (NoSuchAlgorithmException e) {			
+		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 			return "500";
 		}

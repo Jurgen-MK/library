@@ -8,6 +8,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "user_info")
 public class UserInfo {
@@ -18,7 +20,7 @@ public class UserInfo {
 	private String name;
 	private String surname;
 	private String patronymic;
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthday;
 	private String address;
 	private int branch;
@@ -34,12 +36,12 @@ public class UserInfo {
 	/*
 	 * protected UserInfo() { }
 	 */
-	public UserInfo() {}
-	
+	public UserInfo() {
+	}
 
 	public UserInfo(int id, String username, String name, String surname, String patronymic, Date birthday,
 			String address, int branch, int department, int nti, int line, int region, int position, String phone,
-			String email, String education) {		
+			String email, String education) {
 		this.id = id;
 		this.username = username;
 		this.name = name;
@@ -154,8 +156,6 @@ public class UserInfo {
 		this.region = region;
 	}
 
-	
-
 	public String getPhone() {
 		return phone;
 	}
@@ -180,20 +180,12 @@ public class UserInfo {
 		this.education = education;
 	}
 
-
-
 	public int getPosition() {
 		return position;
 	}
 
-
-
 	public void setPosition(int position) {
 		this.position = position;
 	}
-
-
-
-	
 
 }

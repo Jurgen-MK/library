@@ -86,7 +86,7 @@ public class UserServiceTest {
 		when(userInfoMock.save(Mockito.any(UserInfo.class))).thenReturn(testuserinfo);
 		when(userRoleMock.save(Mockito.any(Authorities.class))).thenReturn(testauth);
 		when(userGroupsMock.save(Mockito.any(UserGroups.class))).thenReturn(testusergroups);
-		assertEquals("1", userImpl.regUser(testuser, testuserinfo));
+		assertEquals("200", userImpl.regUser(testuser, testuserinfo));
 	}
 
 	@Test
@@ -98,7 +98,7 @@ public class UserServiceTest {
 		when(userInfoMock.save(Mockito.any(UserInfo.class))).thenReturn(testuserinfo);
 		when(userRoleMock.save(Mockito.any(Authorities.class))).thenReturn(testauth);
 		when(userGroupsMock.save(Mockito.any(UserGroups.class))).thenReturn(testusergroups);
-		assertEquals("0", userImpl.regUser(testuser, testuserinfo));
+		assertEquals("100", userImpl.regUser(testuser, testuserinfo));
 	}
 
 	@Test(expected = Exception.class)
@@ -120,7 +120,7 @@ public class UserServiceTest {
 		when(passwordEncMock.matches("password", "password")).thenReturn(true);
 		when(userDaoMock.getPassword("user")).thenReturn("password");
 		doNothing().when(userDaoMock).resetPassword("user", "password", "password");
-		assertEquals("1", userImpl.changePassword("user", "password", "password"));
+		assertEquals("200", userImpl.changePassword("user", "password", "password"));
 	}
 
 	@Test
@@ -128,7 +128,7 @@ public class UserServiceTest {
 		when(passwordEncMock.matches("wrongpassword", "password")).thenReturn(true);
 		when(userDaoMock.getPassword("user")).thenReturn("password");
 		doNothing().when(userDaoMock).resetPassword("user", "password", "password");
-		assertEquals("0", userImpl.changePassword("user", "password", "password"));
+		assertEquals("100", userImpl.changePassword("user", "password", "password"));
 	}
 
 	@Test
@@ -136,7 +136,7 @@ public class UserServiceTest {
 		when(userDaoMock.getAnswer(Mockito.anyString())).thenReturn(hashedstring);
 		doNothing().when(userDaoMock).resetPassword("user", "password", "password");
 		when(passwordEncMock.encode(Mockito.anyString())).thenReturn("password");
-		assertEquals("1", userImpl.resetPassword("user", teststring, "password"));
+		assertEquals("200", userImpl.resetPassword("user", teststring, "password"));
 	}
 
 	@Test
@@ -144,7 +144,7 @@ public class UserServiceTest {
 		when(userDaoMock.getAnswer(Mockito.anyString())).thenReturn("1");
 		doNothing().when(userDaoMock).resetPassword("user", "password", "password");
 		when(passwordEncMock.encode(Mockito.anyString())).thenReturn("password");
-		assertEquals("0", userImpl.resetPassword("user", teststring, "password"));
+		assertEquals("100", userImpl.resetPassword("user", teststring, "password"));
 	}
 
 }

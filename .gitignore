@@ -1,4 +1,5 @@
 /.metadata
+/.vscode
 /lib-auth-jwt/bin
 /lib-auth-resourse/bin
 /lib-mob-client/.idea

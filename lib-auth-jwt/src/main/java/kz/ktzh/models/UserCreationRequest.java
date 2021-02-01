@@ -5,6 +5,10 @@ public class UserCreationRequest {
 	private Users user;
 	private UserInfo userInfo;
 
+	public UserCreationRequest() {
+
+	}
+
 	public UserCreationRequest(Users user, UserInfo userInfo) {
 		this.user = user;
 		this.userInfo = userInfo;
