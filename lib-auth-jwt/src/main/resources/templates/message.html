@@ -24,7 +24,7 @@
 					<p class="mb-0" th:text="${message} " /> 
 					<p>
 						Для того чтобы перейти в ИС - ЭЦБ нажмите 
-						<a href="http://10.64.2.197:53270/ecplibjsf/" class="alert-link">сюда</a>.
+						<a th:href="${ecbService}" class="alert-link">сюда</a>.
 					</p>
 				</div>
 			</div>

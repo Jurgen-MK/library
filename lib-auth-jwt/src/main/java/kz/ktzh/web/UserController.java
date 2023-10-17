@@ -3,6 +3,7 @@ package kz.ktzh.web;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,6 +27,9 @@ public class UserController {
 	
 	@Autowired
 	UserRepository userRepo;
+	
+	@Value("${ecb-service}")
+    private String ecbService;
 	
 	@RequestMapping("/signUp")
     public String segnUp() {
@@ -112,6 +116,7 @@ public class UserController {
 		userCreationRequest.getUserInfo().setSurname(surname);
 		userCreationRequest.getUserInfo().setName(name);
 		userCreationRequest.getUserInfo().setPatronymic(patronymic);
+		model.addAttribute("ecbService", ecbService);
 		
 		if (!password.equals(confirmPass)) {
 			model.addAllAttributes(attributes(userCreationRequest));

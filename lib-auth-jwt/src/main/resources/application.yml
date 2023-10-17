@@ -1,5 +1,7 @@
 server:
-  port: 9000
+  port: 5611
+  
+ecb-service: http://10.96.2.230:8080/ecplibjsf/
 
 security:
   jwt:
@@ -11,7 +13,7 @@ security:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/bibl?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&characterEncoding=utf8
+    url: jdbc:mysql://10.96.2.230:3306/bibl?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&characterEncoding=utf8
     username: root
     password: root
   jackson:
