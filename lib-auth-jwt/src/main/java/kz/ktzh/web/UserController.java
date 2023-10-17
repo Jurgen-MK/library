@@ -50,7 +50,7 @@ public class UserController {
     		) {
 		
 		String msgCode = userServ.resetPassword(username, answer, newPassword);
-		
+		model.addAttribute("ecbService", ecbService);
 		if (msgCode.equals("200")) {
 			model.addAttribute("message", "Вы успешно сменили пароль!");
 			return "message";
